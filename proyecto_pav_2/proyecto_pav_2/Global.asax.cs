@@ -6,7 +6,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.UI;
 
-namespace proyecto_pav_2
+namespace Capa_de_presentacion
 {
     public class Global : System.Web.HttpApplication
     {

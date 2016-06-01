@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace proyecto_pav_2
+namespace Capa_de_presentacion
 {
     public partial class ABMC_Paquete_Turistico : System.Web.UI.Page
     {
@@ -50,14 +50,14 @@ namespace proyecto_pav_2
 
             if (boton == "inicio")
             {
-                gv_paquete_turistico.DataSource = Gestor_Paquete_Turistico.buscar_paquetes();
+                gv_paquete_turistico.DataSource = Capa_de_negocio.Gestor_Paquete_Turistico.buscar_paquetes();
                 gv_paquete_turistico.DataBind();    
             }
             else
             {
                 if (boton == "buscar")
                 {
-                    gv_paquete_turistico.DataSource = Gestor_Paquete_Turistico.buscar_por_nombre(txt_nombre_paquete.Text,orden);
+                    gv_paquete_turistico.DataSource = Capa_de_negocio.Gestor_Paquete_Turistico.buscar_por_nombre(txt_nombre_paquete.Text, orden);
                     gv_paquete_turistico.DataBind(); 
                 }
             }
@@ -68,37 +68,37 @@ namespace proyecto_pav_2
 
             if (ddl.ID == "ddl_temporada")
             {
-                ddl_temporada.DataSource = Gestor_Temporada.obtener_temporadas();
+                ddl_temporada.DataSource = Capa_de_negocio.Gestor_Temporada.obtener_temporadas();
             }
             else
             {
                 if (ddl.ID=="ddl_destino")
                 {
-                    ddl_destino.DataSource = Gestor_Destino.obtener_destinos();
+                    ddl_destino.DataSource = Capa_de_negocio.Gestor_Destino.obtener_destinos();
                 }
                 else
                 {
                     if (ddl.ID == "ddl_alojamiento")
                     {
-                        ddl_alojamiento.DataSource = Gestor_Alojamento.obtener_alojamientos();
+                        ddl_alojamiento.DataSource = Capa_de_negocio.Gestor_Alojamento.obtener_alojamientos();
                     }
                     else
                     {
                         if (ddl.ID == "ddl_pension")
                         {
-                            ddl_pension.DataSource = Gestor_Pension.obtener_pensiones();
+                            ddl_pension.DataSource = Capa_de_negocio.Gestor_Pension.obtener_pensiones();
                         }
                         else
                         {
                             if (ddl.ID == "ddl_habitacion")
                             {
-                                ddl_habitacion.DataSource = Gestor_Habitacion.obtener_habitaciones();
+                                ddl_habitacion.DataSource = Capa_de_negocio.Gestor_Habitacion.obtener_habitaciones();
                             }
                             else
                             {
                                 if (ddl.ID == "ddl_transporte")
                                 {
-                                    ddl_transporte.DataSource = Gestor_Transporte.obtener_transportes();
+                                    ddl_transporte.DataSource = Capa_de_negocio.Gestor_Transporte.obtener_transportes();
                                 }
                             }
                         }
@@ -140,8 +140,8 @@ namespace proyecto_pav_2
             if (gv_paquete_turistico.SelectedRow != null) //Verificamos que haya seleccionado algo de la grilla 
             {
                 int id_paquete_turistico = (int)gv_paquete_turistico.SelectedValue;
-               
-                Paquete_Turistico p = Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
+
+                Capa_de_entidad.Paquete_Turistico p = (Capa_de_entidad.Paquete_Turistico) Capa_de_negocio.Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
 
                 lbl_id_paquete_turistico.Text = ""+p.id_paquete_turistico;
 
@@ -167,7 +167,7 @@ namespace proyecto_pav_2
             {
                 int id_paquete_turistico = (int)gv_paquete_turistico.SelectedValue;
 
-                Paquete_Turistico p = Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
+                Capa_de_entidad.Paquete_Turistico p = (Capa_de_entidad.Paquete_Turistico)Capa_de_negocio.Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
 
                 lbl_id_paquete_turistico.Text = "" + p.id_paquete_turistico;
 
@@ -203,7 +203,7 @@ namespace proyecto_pav_2
             {
                 int id_paquete_turistico = (int)gv_paquete_turistico.SelectedValue;
 
-                Paquete_Turistico p = Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
+                Capa_de_entidad.Paquete_Turistico p = (Capa_de_entidad.Paquete_Turistico)Capa_de_negocio.Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
 
                 lbl_id_paquete_turistico.Text = "" + p.id_paquete_turistico;
 
@@ -286,7 +286,7 @@ namespace proyecto_pav_2
             }
         }
 
-        private void completar_campos(Paquete_Turistico p)
+        private void completar_campos(Capa_de_entidad.Paquete_Turistico p)
         {
             ddl_temporada.SelectedIndex = p.temporada.id_temporada;
             txt_nombre.Text = p.nombre_paquete;
@@ -348,14 +348,14 @@ namespace proyecto_pav_2
             {
                 descuento_menor = (decimal)0.0;
             }
-            
-            Paquete_Turistico p = new Paquete_Turistico();
-            Temporada t = new Temporada();
-            Destino d = new Destino();
-            Alojamiento a = new Alojamiento();
-            Pension pen = new Pension();
-            Habitacion h = new Habitacion();
-            Transporte tr = new Transporte();
+
+            Capa_de_entidad.Paquete_Turistico p = new Capa_de_entidad.Paquete_Turistico();
+            Capa_de_entidad.Temporada t = new Capa_de_entidad.Temporada();
+            Capa_de_entidad.Destino d = new Capa_de_entidad.Destino();
+            Capa_de_entidad.Alojamiento a = new Capa_de_entidad.Alojamiento();
+            Capa_de_entidad.Pension pen = new Capa_de_entidad.Pension();
+            Capa_de_entidad.Habitacion h = new Capa_de_entidad.Habitacion();
+            Capa_de_entidad.Transporte tr = new Capa_de_entidad.Transporte();
 
             t.id_temporada = id_temporada;
             p.temporada = t;
@@ -384,13 +384,13 @@ namespace proyecto_pav_2
 
             p.descuento_menor = descuento_menor;
 
-            Gestor_Paquete_Turistico.agregar_paquete(p);
+            Capa_de_negocio.Gestor_Paquete_Turistico.agregar_paquete(p);
         }
 
         private void modificar_paquete(int id_paquete) 
         {
             string boton = ViewState["boton"].ToString();
-            Paquete_Turistico p = new Paquete_Turistico();
+            Capa_de_entidad.Paquete_Turistico p = new Capa_de_entidad.Paquete_Turistico();
 
             if (boton == "editar")
             {
@@ -410,12 +410,12 @@ namespace proyecto_pav_2
                 int id_transporte = ddl_transporte.SelectedIndex;
                 decimal descuento_menor = decimal.Parse(txt_descuento_menor.Text);
 
-                Temporada t = new Temporada();
-                Destino d = new Destino();
-                Alojamiento a = new Alojamiento();
-                Pension pen = new Pension();
-                Habitacion h = new Habitacion();
-                Transporte tr = new Transporte();
+                Capa_de_entidad.Temporada t = new Capa_de_entidad.Temporada();
+                Capa_de_entidad.Destino d = new Capa_de_entidad.Destino();
+                Capa_de_entidad.Alojamiento a = new Capa_de_entidad.Alojamiento();
+                Capa_de_entidad.Pension pen = new Capa_de_entidad.Pension();
+                Capa_de_entidad.Habitacion h = new Capa_de_entidad.Habitacion();
+                Capa_de_entidad.Transporte tr = new Capa_de_entidad.Transporte();
 
                 t.id_temporada = id_temporada;
                 p.temporada = t;
@@ -445,12 +445,12 @@ namespace proyecto_pav_2
 
                 p.descuento_menor = descuento_menor;
 
-                Gestor_Paquete_Turistico.modificar_paquete(p);
+                Capa_de_negocio.Gestor_Paquete_Turistico.modificar_paquete(p);
             }
             else
             {
                 p.id_paquete_turistico = id_paquete;
-                Gestor_Paquete_Turistico.eliminar_paquete(p);
+                Capa_de_negocio.Gestor_Paquete_Turistico.eliminar_paquete(p);
             }
         }
 
@@ -472,7 +472,7 @@ namespace proyecto_pav_2
 
             if (id_alojamiento != 0)
             {
-                Alojamiento a = Gestor_Alojamento.buscar_por_id(id_alojamiento);
+                Capa_de_entidad.Alojamiento a = Capa_de_negocio.Gestor_Alojamento.buscar_por_id(id_alojamiento);
 
                 txt_descripcion_alojamiento.Text = a.descripcion;
                 ddl_pension.SelectedIndex = a.pension.id_pension;
@@ -494,7 +494,7 @@ namespace proyecto_pav_2
 
             if (id_destino != 0)
             {
-                ddl_alojamiento.DataSource = Gestor_Alojamento.obtener_alojamientos(id_destino);
+                ddl_alojamiento.DataSource = Capa_de_negocio.Gestor_Alojamento.obtener_alojamientos(id_destino);
                 ddl_alojamiento.DataValueField = "id_alojamiento";
                 ddl_alojamiento.DataTextField = "nombre";
                 ddl_alojamiento.DataBind();
@@ -503,7 +503,7 @@ namespace proyecto_pav_2
                 ddl_pension.SelectedIndex = 0;
                 ddl_habitacion.SelectedIndex = 0;
 
-                ddl_transporte.DataSource = Gestor_Transporte.obtener_transportes(id_destino);
+                ddl_transporte.DataSource = Capa_de_negocio.Gestor_Transporte.obtener_transportes(id_destino);
                 ddl_transporte.DataValueField = "id_transporte";
                 ddl_transporte.DataTextField = "descripcion";
                 ddl_transporte.DataBind();

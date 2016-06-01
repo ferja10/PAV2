@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Placer_Viajes.master.cs" Inherits="proyecto_pav_2.Placer_Viajes" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Placer_Viajes.master.cs" Inherits="Capa_de_presentacion.Placer_Viajes" %>
 
 <!DOCTYPE html>
 

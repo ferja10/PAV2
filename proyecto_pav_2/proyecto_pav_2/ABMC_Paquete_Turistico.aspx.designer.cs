@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace proyecto_pav_2 {
+namespace Capa_de_presentacion {
     
     
     public partial class ABMC_Paquete_Turistico {

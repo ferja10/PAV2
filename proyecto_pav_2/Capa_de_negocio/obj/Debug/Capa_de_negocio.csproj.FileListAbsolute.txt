@@ -1,0 +1,9 @@
+C:\Users\javi\Desktop\proyecto_pav_2\Capa_de_negocio\obj\Debug\Capa_de_negocio.csprojResolveAssemblyReference.cache
+C:\Users\javi\Desktop\proyecto_pav_2\Capa_de_negocio\bin\Debug\Capa_de_negocio.dll
+C:\Users\javi\Desktop\proyecto_pav_2\Capa_de_negocio\bin\Debug\Capa_de_negocio.pdb
+C:\Users\javi\Desktop\proyecto_pav_2\Capa_de_negocio\bin\Debug\Capa_de_datos.dll
+C:\Users\javi\Desktop\proyecto_pav_2\Capa_de_negocio\bin\Debug\Capa_de_entidad.dll
+C:\Users\javi\Desktop\proyecto_pav_2\Capa_de_negocio\bin\Debug\Capa_de_datos.pdb
+C:\Users\javi\Desktop\proyecto_pav_2\Capa_de_negocio\bin\Debug\Capa_de_entidad.pdb
+C:\Users\javi\Desktop\proyecto_pav_2\Capa_de_negocio\obj\Debug\Capa_de_negocio.dll
+C:\Users\javi\Desktop\proyecto_pav_2\Capa_de_negocio\obj\Debug\Capa_de_negocio.pdb

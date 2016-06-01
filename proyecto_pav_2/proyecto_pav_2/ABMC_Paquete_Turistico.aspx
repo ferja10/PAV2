@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Placer_Viajes.Master" AutoEventWireup="true" CodeBehind="ABMC_Paquete_Turistico.aspx.cs" Inherits="proyecto_pav_2.ABMC_Paquete_Turistico" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Placer_Viajes.Master" AutoEventWireup="true" CodeBehind="ABMC_Paquete_Turistico.aspx.cs" Inherits="Capa_de_presentacion.ABMC_Paquete_Turistico" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
     <style type="text/css">

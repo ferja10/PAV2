@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="proyecto_pav_2.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Capa_de_presentacion.Global" Language="C#" %>

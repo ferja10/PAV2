@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace proyecto_pav_2
+namespace Capa_de_presentacion
 {
     public partial class Placer_Viajes : System.Web.UI.MasterPage
     {
