@@ -18,10 +18,10 @@ namespace Capa_de_negocio
             ad = new Capa_de_datos.Acceso_A_Datos();
 
             sql = "select PT.id_paquete_turistico as 'id_paquete_turistico', PT.nombre_paquete as 'nombre_paquete',D.nombre as 'destino', " +
-            "PT.cantidad_dias as 'cantidad_dias',PT.cantidad_noches as 'cantidad_noches', " +
-            "PXT.fecha_desde,PXT.fecha_hasta from Paquete_Turistico PT join Paquete_X_Temporada PXT on PT.id_paquete_turistico = PXT.id_paquete_turistico " +
-            "join Temporada T on PXT.id_temporada = T.id_temporada join Destino D on PT.id_destino = D.id_destino " +
-            "where PT.estado = 1";
+                "PT.cantidad_dias as 'cantidad_dias',PT.cantidad_noches as 'cantidad_noches',PXT.fecha_comienzo_funcionamiento, " +
+                "PXT.fecha_alta from Paquete_Turistico PT join Paquete_X_Temporada PXT on PT.id_paquete_turistico = PXT.id_paquete_turistico " +
+                "join Temporada T on PXT.id_temporada = T.id_temporada join Destino D on PT.id_destino = D.id_destino " +
+                "where PT.estado = 1 order by PT.nombre_paquete";
             
             DataTable dt = new DataTable();
             dt = ad.leo_tabla(sql);
@@ -35,10 +35,10 @@ namespace Capa_de_negocio
             DataTable dt = new DataTable();
 
             sql = "select PT.id_paquete_turistico as 'id_paquete_turistico', PT.nombre_paquete as 'nombre_paquete',D.nombre as 'destino', " +
-            "PT.cantidad_dias as 'cantidad_dias',PT.cantidad_noches as 'cantidad_noches', " +
-            "PXT.fecha_desde,PXT.fecha_hasta from Paquete_Turistico PT join Paquete_X_Temporada PXT on PT.id_paquete_turistico = PXT.id_paquete_turistico " +
-            "join Temporada T on PXT.id_temporada = T.id_temporada join Destino D on PT.id_destino = D.id_destino " +
-            "where PT.estado = 1 and PT.nombre_paquete like @nombre_paquete order by " + orden;
+                "PT.cantidad_dias as 'cantidad_dias',PT.cantidad_noches as 'cantidad_noches',PXT.fecha_comienzo_funcionamiento, " +
+                "PXT.fecha_alta from Paquete_Turistico PT join Paquete_X_Temporada PXT on PT.id_paquete_turistico = PXT.id_paquete_turistico " +
+                "join Temporada T on PXT.id_temporada = T.id_temporada join Destino D on PT.id_destino = D.id_destino " +
+                "where PT.estado = 1 and PT.nombre_paquete like @nombre_paquete order by " + orden;
 
             dt=ad.leo_tabla("@nombre_paquete", filtro_a_buscar, sql);
 
@@ -49,10 +49,12 @@ namespace Capa_de_negocio
         {
             string id = "" + id_paquete_turistico;
 
-            sql = "select PT.*,PXT.fecha_desde,PXT.fecha_hasta,T.id_temporada ,A.id_habitacion,A.descripcion as 'descripcion_alojamiento',A.id_pension, PXT.descuento_menor as 'descuento_menor' from " +
-                "Paquete_Turistico PT join Paquete_X_Temporada PXT on PT.id_paquete_turistico = PXT.id_paquete_turistico " +
+            sql = "select PT.*,PXT.fecha_comienzo_funcionamiento,PXT.fecha_alta,T.id_temporada ,A.id_habitacion, " +
+                "A.descripcion as 'descripcion_alojamiento',A.id_pension, PXT.monto_excurciones, PXT.descuento_menor " +
+                "from Paquete_Turistico PT join Paquete_X_Temporada PXT on PT.id_paquete_turistico = PXT.id_paquete_turistico " +
                 "join Temporada T on PXT.id_temporada = T.id_temporada join Alojamiento A on PT.id_alojamiento = A.id_alojamiento " +
                 "where PT.id_paquete_turistico = @id_paquete_turistico";
+
 
             Capa_de_entidad.Paquete_Turistico pt = new Capa_de_entidad.Paquete_Turistico();
 
@@ -124,14 +126,14 @@ namespace Capa_de_negocio
                     pt.alojamiento = a;
                 }
 
-                if (dr["fecha_desde"] != DBNull.Value)
+                if (dr["fecha_comienzo_funcionamiento"] != DBNull.Value)
                 {
-                    pt.fecha_inicio = (DateTime)dr["fecha_desde"];
+                    pt.fecha_comienzo_funcionamiento = (DateTime)dr["fecha_comienzo_funcionamiento"];
                 }
 
-                if (dr["fecha_hasta"] != DBNull.Value)
+                if (dr["fecha_alta"] != DBNull.Value)
                 {
-                    pt.fecha_fin = (DateTime)dr["fecha_hasta"];   
+                    pt.fecha_alta = (DateTime)dr["fecha_alta"];   
                 }
 
                 if (dr["id_temporada"] != DBNull.Value)
@@ -141,11 +143,15 @@ namespace Capa_de_negocio
                     pt.temporada = t;
                 }
 
+                if (dr["monto_excurciones"] != DBNull.Value)
+                {
+                    pt.monto_excurciones = (decimal)dr["monto_excurciones"];
+                }
+
                 if (dr["descuento_menor"] != DBNull.Value)
                 {
                     pt.descuento_menor = (decimal)dr["descuento_menor"];
                 }
-
             }
             
             dr.Close();
@@ -176,9 +182,9 @@ namespace Capa_de_negocio
 
             p.id_paquete_turistico= id_paquete;
 
-            sql = "insert into Paquete_X_Temporada (id_paquete_turistico,id_temporada,fecha_desde,fecha_hasta,descuento_menor,estado) values(@id_paquete_turistico,@id_temporada,@fecha_desde,@fecha_hasta,@descuento_menor,1)";
+            sql = "insert into Paquete_X_Temporada (id_paquete_turistico,id_temporada,fecha_comienzo_funcionamiento,fecha_alta,monto_excurciones,descuento_menor,estado) values(@id_paquete_turistico,@id_temporada,@fecha_comienzo_funcionamiento,@fecha_alta,@monto_excurciones,@descuento_menor,1)";
 
-            parametros = "@id_paquete_turistico=" + p.id_paquete_turistico + ",@id_temporada=" + p.temporada.id_temporada + ",@fecha_desde='" + p.fecha_inicio.ToString("dd/MM/yyyy") + "',@fecha_hasta='" + p.fecha_fin.ToString("dd/MM/yyyy") + "'" + ",@descuento_menor=" + p.descuento_menor.ToString().Replace(",", ".");
+            parametros = "@id_paquete_turistico=" + p.id_paquete_turistico + ",@id_temporada=" + p.temporada.id_temporada + ",@fecha_comienzo_funcionamiento='" + p.fecha_comienzo_funcionamiento.ToString("dd/MM/yyyy") + "',@fecha_alta='" + p.fecha_alta.ToString("dd/MM/yyyy") + "'" + ",@monto_excurciones=" + p.monto_excurciones.ToString().Replace(",", ".") + "@descuento_menor=" + p.descuento_menor;
 
             ad.insertar(sql, parametros);
         }
@@ -200,8 +206,8 @@ namespace Capa_de_negocio
 
             sql = "UPDATE Paquete_X_Temporada SET " +
                 "id_paquete_turistico = " + p.id_paquete_turistico + ", id_temporada = " + p.temporada.id_temporada + 
-                ", fecha_desde = '"  + p.fecha_inicio.ToString("dd/MM/yyyy") + "', fecha_hasta = '" + p.fecha_fin.ToString("dd/MM/yyyy") + "'"+
-                ", descuento_menor = " + p.descuento_menor.ToString().Replace(",",".") +
+                ", fecha_comienzo_funcionamiento = '"  + p.fecha_comienzo_funcionamiento.ToString("dd/MM/yyyy") + "'"+
+                ", monto_excurciones = " + p.monto_excurciones.ToString().Replace(",",".") + ", descuento_menor = "+ p.descuento_menor +
                 " WHERE id_paquete_turistico = @id_paquete_turistico and id_temporada = @id_temporada";
 
             parametro = "@id_paquete_turistico=" + p.id_paquete_turistico + ",@id_temporada=" + p.temporada.id_temporada;
@@ -214,8 +220,8 @@ namespace Capa_de_negocio
             ad = new Capa_de_datos.Acceso_A_Datos();
 
             sql = "UPDATE Paquete_Turistico SET " +
-                "estado = 0 " +
-                "WHERE id_paquete_turistico = @id_paquete_turistico";
+                "estado = 0, fecha_baja = " + DateTime.Now.ToString("dd/MM/yyyy") +
+                " WHERE id_paquete_turistico = @id_paquete_turistico";
 
             string parametro = "@id_paquete_turistico="+p.id_paquete_turistico;
 

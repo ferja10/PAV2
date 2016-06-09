@@ -47,6 +47,7 @@ namespace Capa_de_datos
             return dt;
         }
 
+
         /// <summary>
         /// devuelte una tabla virtual
         /// </summary>
@@ -81,6 +82,44 @@ namespace Capa_de_datos
             dr = cmd.ExecuteReader();
             //cerrar_conexion();
             return dr;
+        }
+
+        public SqlDataReader leo_tabla_lectura(string sql, string parametros) 
+        {
+            string campo, parametro;
+            int i_coma = 0, i_igual = 0;
+
+            if (parametros.Trim() != "")
+            {
+                cmd = new SqlCommand(sql, cn);
+
+                while (true)
+                {
+                    i_igual = parametros.IndexOf("=", i_coma);
+                    campo = parametros.Substring(i_coma + 1, i_igual - i_coma - 1);
+                    i_coma = parametros.IndexOf(",", i_igual);
+
+                    if (i_coma > 0)
+                    {
+                        parametro = parametros.Substring(i_igual + 1, i_coma - i_igual - 1);
+                    }
+                    else
+                    {
+                        parametro = parametros.Substring(i_igual + 1);
+                        break;
+                    }
+
+                    cmd.Parameters.Add(new SqlParameter(campo, parametro));
+
+                }
+
+                cmd.Parameters.Add(new SqlParameter(campo, parametro.ToString().Replace("#", ",")));
+
+                abrir_conexion();
+
+            }
+
+            return dr = cmd.ExecuteReader();
         }
 
         /// <summary>

@@ -229,76 +229,31 @@ namespace Capa_de_presentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ddl_destino;
         
         /// <summary>
-        /// lbl_fecha_inicio control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_fecha_inicio;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// txt_fecha_inicio control.
+        /// txt_fecha_comienzo_funcionamiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_fecha_inicio;
+        protected global::System.Web.UI.WebControls.TextBox txt_fecha_comienzo_funcionamiento;
         
         /// <summary>
-        /// cv_txt_fecha_inicio control.
+        /// rfv_txt_fecha_comienzo_funcionamiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator cv_txt_fecha_inicio;
-        
-        /// <summary>
-        /// rfv_txt_fecha_inicio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txt_fecha_inicio;
-        
-        /// <summary>
-        /// lbl_fecha_finalizacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_fecha_finalizacion;
-        
-        /// <summary>
-        /// txt_fecha_finalizacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_fecha_finalizacion;
-        
-        /// <summary>
-        /// cv_txt_fecha_finalizacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator cv_txt_fecha_finalizacion;
-        
-        /// <summary>
-        /// rfv_txt_fecha_finalizacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txt_fecha_finalizacion;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txt_fecha_comienzo_funcionamiento;
         
         /// <summary>
         /// lbl_cantidad_dias control.
@@ -319,13 +274,22 @@ namespace Capa_de_presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_cantidad_dias;
         
         /// <summary>
-        /// rfv_txt_cantidad_dias control.
+        /// rfv_cantidad_dias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txt_cantidad_dias;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_cantidad_dias;
+        
+        /// <summary>
+        /// rev_cantidad_dias control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev_cantidad_dias;
         
         /// <summary>
         /// lbl_cantidad_noches control.
@@ -346,13 +310,22 @@ namespace Capa_de_presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_cantidad_noches;
         
         /// <summary>
-        /// rfv_txt_cantidad_noches control.
+        /// rfv_cantidad_noches control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txt_cantidad_noches;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_cantidad_noches;
+        
+        /// <summary>
+        /// cvr_txt_cantidad_noches control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvr_txt_cantidad_noches;
         
         /// <summary>
         /// lbl_descripcion_paquete control.
@@ -499,22 +472,58 @@ namespace Capa_de_presentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ddl_transporte;
         
         /// <summary>
-        /// lbl_datos_descuento control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_datos_descuento;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// lbl_descuento_menor control.
+        /// lbl_monto_excurcion1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_descuento_menor;
+        protected global::System.Web.UI.WebControls.Label lbl_monto_excurcion1;
+        
+        /// <summary>
+        /// txt_monto_excurciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_monto_excurciones;
+        
+        /// <summary>
+        /// rfv_monto_excurciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_monto_excurciones;
+        
+        /// <summary>
+        /// lbl_datos_descuento0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_datos_descuento0;
+        
+        /// <summary>
+        /// lbl_descuento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_descuento;
         
         /// <summary>
         /// txt_descuento_menor control.
@@ -526,21 +535,39 @@ namespace Capa_de_presentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_descuento_menor;
         
         /// <summary>
-        /// btn_aceptar0 control.
+        /// chk_descuento_menor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_aceptar0;
+        protected global::System.Web.UI.WebControls.CheckBox chk_descuento_menor;
         
         /// <summary>
-        /// btn_cancelar0 control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_cancelar0;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
+        /// btn_aceptar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_aceptar;
+        
+        /// <summary>
+        /// btn_cancelar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_cancelar;
     }
 }

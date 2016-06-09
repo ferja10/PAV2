@@ -5,16 +5,93 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>PLACER VIAJES</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/shop-homepage.css" rel="stylesheet" />
+    <link href="js/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" />
+    
+    
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+
 </head>
 <body>
+
     <form id="form1" runat="server">
     <div>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="Inicio.aspx">Placer Viajes</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a runat="server" href="Reserva.aspx" id="mnu_reservas">Reservas</a>
+                        </li>
+                        <li>
+                            <a runat="server" href="Pago.aspx" id="mnu_realizar_pago">Realizar Pago</a>
+                        </li>
+                        <li>
+                            <a runat="server" href="Contacto.aspx" id="mnu_contacto">Contacto</a>
+                        </li>
+                        <li>
+                            <a runat="server" href="Login.aspx" id="mnu_sesion">Sesion</a>
+                        </li>
+                        <li>
+                            <a runat="server" href="ABMC_Paquete_Turistico.aspx" id="mnu_administracion_paquetes">Administracion Paquetes</a>
+                        </li>
+                        <li>
+                            <a runat="server" href="Informe.aspx" id="mnu_informes">Informes</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+
+
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
+
+        <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Grupo PAV2 - Erazo, Montiel - 2016</p>
+                </div>
+            </div>
+        </footer>
+
     </div>
+    <!-- /.container -->
+
+    </div>
+
     </form>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+
 </body>
 </html>

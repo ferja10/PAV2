@@ -16,8 +16,10 @@ namespace Capa_de_entidad
         public Transporte transporte { get; set; }
         public Alojamiento alojamiento { get; set; }
         public Temporada temporada { get; set; }
-        public DateTime fecha_inicio { get; set; }
-        public DateTime fecha_fin { get; set; }
+        public DateTime fecha_comienzo_funcionamiento { get; set;}
+        public DateTime fecha_alta { get; set; }
+        public DateTime fecha_baja { get; set; }
+        public decimal monto_excurciones { get; set; }
         public decimal descuento_menor { get; set; }
     }
 }

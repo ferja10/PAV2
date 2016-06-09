@@ -11,7 +11,17 @@ namespace Capa_de_presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (this.Context.User.IsInRole("administrador"))
+            {
+                mnu_administracion_paquetes.Visible = true;
+                mnu_informes.Visible = true;
+            }
+                
+            else
+            {
+                mnu_administracion_paquetes.Visible = false;
+                mnu_informes.Visible = false;
+            } 
         }
     }
 }

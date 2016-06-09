@@ -46,6 +46,7 @@
     <Compile Include="Gestor_Pension.cs" />
     <Compile Include="Gestor_Temporada.cs" />
     <Compile Include="Gestor_Transporte.cs" />
+    <Compile Include="Gestor_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
