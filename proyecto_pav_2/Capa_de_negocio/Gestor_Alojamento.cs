@@ -16,7 +16,7 @@ namespace Capa_de_negocio
             DataTable dt = new DataTable();
             Capa_de_datos.Acceso_A_Datos ad = new Capa_de_datos.Acceso_A_Datos();
 
-            sql = "SELECT * FROM Alojamiento";
+            sql = "SELECT * FROM Alojamiento order by nombre";
             dt = ad.leo_tabla(sql);
 
             return dt;
@@ -30,7 +30,7 @@ namespace Capa_de_negocio
             sql = "select A.id_alojamiento as 'id_alojamiento',A.nombre as 'nombre' " +
                 "from Alojamiento A join ALOJAMIENTO_X_DESTINO AXD on A.id_alojamiento = AXD.id_alojamiento " +
                 "join Destino D on AXD.id_destino = D.id_destino " +
-                "where D.id_destino="+id_destino;
+                "where D.id_destino=" + id_destino + " order by A.nombre";
 
             dt = ad.leo_tabla(sql);
 

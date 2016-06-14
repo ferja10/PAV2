@@ -221,9 +221,10 @@ namespace Capa_de_presentacion
                     }
                 }
 
-                ViewState["boton"] = "aceptar";
+                ViewState["boton"] = "inicio";
 
                 refrescar_campos();
+                cargar_grilla();
             }
             
         }

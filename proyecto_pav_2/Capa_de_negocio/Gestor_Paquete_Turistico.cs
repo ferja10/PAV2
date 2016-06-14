@@ -167,7 +167,7 @@ namespace Capa_de_negocio
 
             sql = "insert into Paquete_Turistico (nombre_paquete,id_destino,descripcion,cantidad_dias,cantidad_noches,id_transporte,id_alojamiento,estado) values (@nombre_paquete,@id_destino,@descripcion,@cantidad_dias,@cantidad_noches,@id_transporte,@id_alojamiento,1)";
 
-            string parametros = "@nombre_paquete='"+p.nombre_paquete+"',@id_destino="+p.destino.id_destino+",@descripcion='"+p.descripcion.ToString().Replace(",","#")+"',@cantidad_dias="+p.cantidad_dias+",@cantidad_noches="+p.cantidad_noches+",@id_transporte="+p.transporte.id_transporte+",@id_alojamiento="+p.alojamiento.id_alojamiento;
+            string parametros = "@nombre_paquete="+p.nombre_paquete+",@id_destino="+p.destino.id_destino+",@descripcion="+p.descripcion.ToString().Replace(",","#")+",@cantidad_dias="+p.cantidad_dias+",@cantidad_noches="+p.cantidad_noches+",@id_transporte="+p.transporte.id_transporte+",@id_alojamiento="+p.alojamiento.id_alojamiento;
             
             ad.insertar(sql, parametros);
 
@@ -184,7 +184,7 @@ namespace Capa_de_negocio
 
             sql = "insert into Paquete_X_Temporada (id_paquete_turistico,id_temporada,fecha_comienzo_funcionamiento,fecha_alta,monto_excurciones,descuento_menor,estado) values(@id_paquete_turistico,@id_temporada,@fecha_comienzo_funcionamiento,@fecha_alta,@monto_excurciones,@descuento_menor,1)";
 
-            parametros = "@id_paquete_turistico=" + p.id_paquete_turistico + ",@id_temporada=" + p.temporada.id_temporada + ",@fecha_comienzo_funcionamiento='" + p.fecha_comienzo_funcionamiento.ToString("dd/MM/yyyy") + "',@fecha_alta='" + p.fecha_alta.ToString("dd/MM/yyyy") + "'" + ",@monto_excurciones=" + p.monto_excurciones.ToString().Replace(",", ".") + "@descuento_menor=" + p.descuento_menor;
+            parametros = "@id_paquete_turistico=" + p.id_paquete_turistico + ",@id_temporada=" + p.temporada.id_temporada + ",@fecha_comienzo_funcionamiento=" + p.fecha_comienzo_funcionamiento.ToShortDateString() + ",@fecha_alta=" + DateTime.Now.ToShortDateString() + ",@monto_excurciones=" + p.monto_excurciones.ToString().Replace(",", ".") + ",@descuento_menor=" + p.descuento_menor;
 
             ad.insertar(sql, parametros);
         }
@@ -206,7 +206,7 @@ namespace Capa_de_negocio
 
             sql = "UPDATE Paquete_X_Temporada SET " +
                 "id_paquete_turistico = " + p.id_paquete_turistico + ", id_temporada = " + p.temporada.id_temporada + 
-                ", fecha_comienzo_funcionamiento = '"  + p.fecha_comienzo_funcionamiento.ToString("dd/MM/yyyy") + "'"+
+                ", fecha_comienzo_funcionamiento = "  + p.fecha_comienzo_funcionamiento.ToString("dd/MM/yyyy") +
                 ", monto_excurciones = " + p.monto_excurciones.ToString().Replace(",",".") + ", descuento_menor = "+ p.descuento_menor +
                 " WHERE id_paquete_turistico = @id_paquete_turistico and id_temporada = @id_temporada";
 

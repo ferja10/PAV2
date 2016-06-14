@@ -19,6 +19,10 @@ namespace Capa_de_datos
         /// </summary>
         public Acceso_A_Datos()
         {
+            if (cn != null && cn.State == ConnectionState.Open)
+            {
+                cn.Close();
+            }
             string cadena_conexion = ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
             cn = new SqlConnection(cadena_conexion);
         }
@@ -28,6 +32,10 @@ namespace Capa_de_datos
         /// </summary>
         public void abrir_conexion() 
         {
+            if (cn != null && cn.State == ConnectionState.Open)
+            {
+                cn.Close();
+            }
             cn.Open();
         }
 
@@ -86,34 +94,9 @@ namespace Capa_de_datos
 
         public SqlDataReader leo_tabla_lectura(string sql, string parametros) 
         {
-            string campo, parametro;
-            int i_coma = 0, i_igual = 0;
-
             if (parametros.Trim() != "")
             {
-                cmd = new SqlCommand(sql, cn);
-
-                while (true)
-                {
-                    i_igual = parametros.IndexOf("=", i_coma);
-                    campo = parametros.Substring(i_coma + 1, i_igual - i_coma - 1);
-                    i_coma = parametros.IndexOf(",", i_igual);
-
-                    if (i_coma > 0)
-                    {
-                        parametro = parametros.Substring(i_igual + 1, i_coma - i_igual - 1);
-                    }
-                    else
-                    {
-                        parametro = parametros.Substring(i_igual + 1);
-                        break;
-                    }
-
-                    cmd.Parameters.Add(new SqlParameter(campo, parametro));
-
-                }
-
-                cmd.Parameters.Add(new SqlParameter(campo, parametro.ToString().Replace("#", ",")));
+                agrgar_parametros(sql, parametros);
 
                 abrir_conexion();
 
@@ -143,35 +126,12 @@ namespace Capa_de_datos
         /// <param name="parametros">parámetro con su valor con el siguiente formato: "@parametro1=valor1,@parametro2=valor2...@parametroN=valorN"</param>
         public void insertar(string sql,string parametros) 
         {
-            string campo,parametro;
-            int i_coma=0,i_igual=0 ;
-            
-
+         
             if (parametros.Trim() != "")
             {
                 cmd = new SqlCommand(sql, cn);
 
-                while (true)
-                {
-                    i_igual = parametros.IndexOf("=",i_coma);
-                    campo = parametros.Substring(i_coma + 1, i_igual - i_coma - 1);
-                    i_coma = parametros.IndexOf(",",i_igual);
-                    
-                    if (i_coma > 0)
-                    {
-                        parametro = parametros.Substring(i_igual+1, i_coma - i_igual-1);
-                    }
-                    else
-                    {
-                        parametro = parametros.Substring(i_igual + 1);
-                        break;
-                    }
-
-                    cmd.Parameters.Add(new SqlParameter(campo, parametro));
-                    
-                }
-
-                cmd.Parameters.Add(new SqlParameter(campo, parametro.ToString().Replace("#",",")));
+                agrgar_parametros(sql, parametros);
 
                 abrir_conexion();
 
@@ -189,34 +149,9 @@ namespace Capa_de_datos
         /// <param name="parametros">parámetro con su valor con el siguiente formato: "@parametro1=valor1,@parametro2=valor2...@parametroN=valorN"</param>
         public void modificar(string sql, string parametros) 
         {
-            string campo,parametro;
-            int i_coma=0,i_igual=0 ;
-            
             if (parametros.Trim() != "")
             {
-                cmd = new SqlCommand(sql, cn);
-
-                while (true)
-                {
-                    i_igual = parametros.IndexOf("=", i_coma);
-                    campo = parametros.Substring(i_coma + 1, i_igual - i_coma - 1);
-                    i_coma = parametros.IndexOf(",", i_igual);
-
-                    if (i_coma > 0)
-                    {
-                        parametro = parametros.Substring(i_igual + 1, i_coma - i_igual - 1);
-                    }
-                    else
-                    {
-                        parametro = parametros.Substring(i_igual + 1);
-                        break;
-                    }
-
-                    cmd.Parameters.Add(new SqlParameter(campo, parametro));
-
-                }
-
-                cmd.Parameters.Add(new SqlParameter(campo, parametro));
+                agrgar_parametros(sql, parametros);
 
                 abrir_conexion();
 
@@ -224,6 +159,36 @@ namespace Capa_de_datos
 
                 cerrar_conexion();
             }
+        }
+
+        private void agrgar_parametros(string sql, string parametros) 
+        {
+            string campo, parametro;
+            int i_coma = 0, i_igual = 0;
+
+            cmd = new SqlCommand(sql, cn);
+
+            while (true)
+            {
+                i_igual = parametros.IndexOf("=", i_coma);
+                campo = parametros.Substring(i_coma + 1, i_igual - i_coma - 1);
+                i_coma = parametros.IndexOf(",", i_igual);
+
+                if (i_coma > 0)
+                {
+                    parametro = parametros.Substring(i_igual + 1, i_coma - i_igual - 1);
+                }
+                else
+                {
+                    parametro = parametros.Substring(i_igual + 1);
+                    break;
+                }
+
+                cmd.Parameters.Add(new SqlParameter(campo, parametro.ToString().Replace("#", ",")));
+
+            }
+
+            cmd.Parameters.Add(new SqlParameter(campo, parametro.ToString().Replace("#", ",")));
         }
 
         /// <summary>

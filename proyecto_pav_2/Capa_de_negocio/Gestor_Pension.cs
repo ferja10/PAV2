@@ -12,7 +12,8 @@ namespace Capa_de_negocio
         {
             DataTable dt = new DataTable();
             Capa_de_datos.Acceso_A_Datos ad = new Capa_de_datos.Acceso_A_Datos();
-            string sql = "select P.id_pension as 'id_pension',P.nombre + ' C/' + P.descripcion as 'descripcion' from Pension P";
+            string sql = "select P.id_pension as 'id_pension',P.nombre + ' C/' + P.descripcion as 'descripcion' " +
+                "from Pension P order by nombre";
 
             dt = ad.leo_tabla(sql);
 

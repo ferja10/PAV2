@@ -13,7 +13,7 @@ namespace Capa_de_negocio
             DataTable dt = new DataTable();
             Capa_de_datos.Acceso_A_Datos ad = new Capa_de_datos.Acceso_A_Datos();
 
-            string sql = "SELECT * FROM Temporada";
+            string sql = "SELECT * FROM Temporada order by nombre";
             dt = ad.leo_tabla(sql);
 
             return dt;
