@@ -91,17 +91,20 @@ namespace Capa_de_presentacion
 
         protected void btn_consultar_Click(object sender, EventArgs e)
         {
-            pnl_paquete_turistico.Visible = false;
-            pnl_editar_paquete.Visible = true;
-            Panel1.Visible = true;
-            ViewState["boton"] = "consultar";
-            habilitar();
-
             if (gv_paquete_turistico.SelectedRow != null) //Verificamos que haya seleccionado algo de la grilla 
             {
+                pnl_paquete_turistico.Visible = false;
+                pnl_editar_paquete.Visible = true;
+                Panel1.Visible = true;
+                ViewState["boton"] = "consultar";
+                
+                habilitar();
+
                 int id_paquete_turistico = (int)gv_paquete_turistico.SelectedValue;
 
-                Capa_de_entidad.Paquete_Turistico p = (Capa_de_entidad.Paquete_Turistico) Capa_de_negocio.Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
+                Capa_de_entidad.Paquete_Turistico p = new Capa_de_entidad.Paquete_Turistico();
+
+                p = (Capa_de_entidad.Paquete_Turistico) Capa_de_negocio.Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
 
                 lbl_id_paquete_turistico.Text = ""+p.id_paquete_turistico;
 
@@ -109,10 +112,10 @@ namespace Capa_de_presentacion
                 lbl_id_paquete_turistico.Visible = true;
 
                 cargar_combo(ddl_alojamiento, Capa_de_negocio.Gestor_Alojamento.obtener_alojamientos(p.destino.id_destino), "id_alojamiento", "nombre");
-                ddl_alojamiento.Items.Insert(0, "Seleccionar un alojamiento");
-
+                ddl_alojamiento.Items.Insert(0, "Seleccione un alojamiento"); 
+                
                 cargar_combo(ddl_transporte, Capa_de_negocio.Gestor_Transporte.obtener_transportes(p.destino.id_destino), "id_transporte", "descripcion");
-                ddl_transporte.Items.Insert(0, "Seleccionar un transporte");
+                ddl_transporte.Items.Insert(0, "Seleccione un transporte");
 
                 completar_campos(p);
                 
@@ -123,18 +126,20 @@ namespace Capa_de_presentacion
 
         protected void btn_editar_Click(object sender, EventArgs e)
         {
-            pnl_paquete_turistico.Visible = false;
-            pnl_editar_paquete.Visible = true;
-            Panel1.Visible = true;
-
-            ViewState["boton"] = "editar";
-            habilitar();
-
             if (gv_paquete_turistico.SelectedRow != null) //Verificamos que haya seleccionado algo de la grilla 
             {
+                pnl_paquete_turistico.Visible = false;
+                pnl_editar_paquete.Visible = true;
+                Panel1.Visible = true;
+
+                ViewState["boton"] = "editar";
+                habilitar();
+
                 int id_paquete_turistico = (int)gv_paquete_turistico.SelectedValue;
 
-                Capa_de_entidad.Paquete_Turistico p = (Capa_de_entidad.Paquete_Turistico)Capa_de_negocio.Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
+                Capa_de_entidad.Paquete_Turistico p = new Capa_de_entidad.Paquete_Turistico();
+
+                p = (Capa_de_entidad.Paquete_Turistico)Capa_de_negocio.Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
 
                 lbl_id_paquete_turistico.Text = "" + p.id_paquete_turistico;
 
@@ -142,10 +147,10 @@ namespace Capa_de_presentacion
                 lbl_id_paquete_turistico.Visible = true;
 
                 cargar_combo(ddl_alojamiento, Capa_de_negocio.Gestor_Alojamento.obtener_alojamientos(p.destino.id_destino), "id_alojamiento", "nombre");
-                ddl_alojamiento.Items.Insert(0, "Seleccionar un alojamiento");
+                ddl_alojamiento.Items.Insert(0, "Seleccione un alojamiento");
 
                 cargar_combo(ddl_transporte, Capa_de_negocio.Gestor_Transporte.obtener_transportes(p.destino.id_destino), "id_transporte", "descripcion");
-                ddl_transporte.Items.Insert(0, "Seleccionar un alojamiento");
+                ddl_transporte.Items.Insert(0, "Seleccione un transporte");
 
                 completar_campos(p);
 
@@ -167,18 +172,20 @@ namespace Capa_de_presentacion
 
         protected void btn_eliminar_Click(object sender, EventArgs e)
         {
-            pnl_paquete_turistico.Visible = false;
-            pnl_editar_paquete.Visible = true;
-            Panel1.Visible = true;
-
-            ViewState["boton"] = "eliminar";
-            habilitar();
-
             if (gv_paquete_turistico.SelectedRow != null) //Verificamos que haya seleccionado algo de la grilla 
             {
+                pnl_paquete_turistico.Visible = false;
+                pnl_editar_paquete.Visible = true;
+                Panel1.Visible = true;
+
+                ViewState["boton"] = "eliminar";
+                habilitar();
+
                 int id_paquete_turistico = (int)gv_paquete_turistico.SelectedValue;
 
-                Capa_de_entidad.Paquete_Turistico p = (Capa_de_entidad.Paquete_Turistico)Capa_de_negocio.Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
+                Capa_de_entidad.Paquete_Turistico p = new Capa_de_entidad.Paquete_Turistico();
+
+                p = (Capa_de_entidad.Paquete_Turistico)Capa_de_negocio.Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
 
                 lbl_id_paquete_turistico.Text = "" + p.id_paquete_turistico;
 
@@ -186,10 +193,10 @@ namespace Capa_de_presentacion
                 lbl_id_paquete_turistico.Visible = true;
 
                 cargar_combo(ddl_alojamiento, Capa_de_negocio.Gestor_Alojamento.obtener_alojamientos(p.destino.id_destino), "id_alojamiento", "nombre");
-                ddl_alojamiento.Items.Insert(0, "Seleccionar un alojamiento");
+                ddl_alojamiento.Items.Insert(0, "Seleccione un alojamiento");
 
                 cargar_combo(ddl_transporte, Capa_de_negocio.Gestor_Transporte.obtener_transportes(p.destino.id_destino), "id_transporte", "descripcion");
-                ddl_transporte.Items.Insert(0, "Seleccionar un alojamiento");
+                ddl_transporte.Items.Insert(0, "Seleccione un transporte");
 
                 completar_campos(p);
 
@@ -272,26 +279,33 @@ namespace Capa_de_presentacion
 
         private void refrescar_campos() 
         {
-            ddl_temporada.SelectedIndex =  0;
+            ddl_temporada.SelectedValue = "Seleccione una temporada";
             txt_nombre.Text = "";
-            ddl_destino.SelectedIndex = 0;
+            ddl_destino.SelectedValue = "Seleccione un destino";
             txt_fecha_comienzo_funcionamiento.Text = "";
             txt_cantidad_dias.Text = "";
             txt_cantidad_noches.Text = "";
             txt_descripcion_paquete.Text = "";
 
-            ddl_alojamiento.Items.Clear();
-            ddl_alojamiento.Items.Insert(0,"Seleccionar un alojamiento");
+            if (ddl_alojamiento.DataSource != DBNull.Value)
+            {
+                ddl_alojamiento.Items.Clear();    
+            }
+            ddl_alojamiento.Items.Insert(0, "Seleccione un alojamiento");
 
-            ddl_alojamiento.SelectedIndex = 0;
+            ddl_alojamiento.SelectedValue = "Seleccione un alojamiento";
             txt_descripcion_alojamiento.Text = "";
-            ddl_pension.SelectedIndex = 0;
-            ddl_habitacion.SelectedIndex = 0;
+            ddl_pension.SelectedValue = "Pension";
+            ddl_habitacion.SelectedValue = "Habitacion";
 
-            ddl_transporte.Items.Clear();
-            ddl_transporte.Items.Insert(0,"Seleccionar un transporte");
+            if (ddl_transporte.DataSource != DBNull.Value)
+            {
+                ddl_transporte.Items.Clear();    
+            }
+            
+            ddl_transporte.Items.Insert(0,"Seleccione un transporte");
 
-            ddl_transporte.SelectedIndex = 0;
+            ddl_transporte.SelectedValue = "Seleccione un transporte";
 
             txt_monto_excurciones.Text = "";
 
@@ -303,18 +317,18 @@ namespace Capa_de_presentacion
 
         private void grabar() 
         {
-            int id_temporada = ddl_temporada.SelectedIndex;
+            int id_temporada = int.Parse(ddl_temporada.SelectedValue);
             string nombre_paquete = txt_nombre.Text;
-            int id_destino = ddl_destino.SelectedIndex;
+            int id_destino = int.Parse(ddl_destino.SelectedValue);
             DateTime fecha_comienzo_funcionamiento = DateTime.Parse(txt_fecha_comienzo_funcionamiento.Text);
             int cantidad_dias = int.Parse(txt_cantidad_dias.Text);
             int cantidad_noches = int.Parse(txt_cantidad_noches.Text);
             string descripcion_paquete = txt_descripcion_paquete.Text;
-            int id_alojamiento = ddl_alojamiento.SelectedIndex;
+            int id_alojamiento = int.Parse(ddl_alojamiento.SelectedValue);
             string descripcion_alojmiento = txt_descripcion_alojamiento.Text;
-            int id_pension = ddl_pension.SelectedIndex;
-            int id_habitacion = ddl_habitacion.SelectedIndex;
-            int id_transporte = ddl_transporte.SelectedIndex;
+            int id_pension = int.Parse(ddl_pension.SelectedValue);
+            int id_habitacion = int.Parse(ddl_habitacion.SelectedValue);
+            int id_transporte = int.Parse(ddl_transporte.SelectedValue);
 
             decimal monto_excursiones;
 
@@ -385,18 +399,18 @@ namespace Capa_de_presentacion
             if (boton == "editar")
             {
                 int id_paquete_turistico = id_paquete;
-                int id_temporada = ddl_temporada.SelectedIndex;
+                int id_temporada = int.Parse(ddl_temporada.SelectedValue);
                 string nombre_paquete = txt_nombre.Text;
-                int id_destino = ddl_destino.SelectedIndex;
+                int id_destino = int.Parse(ddl_destino.SelectedValue);
                 DateTime fecha_comienzo_funcionamiento = DateTime.Parse(txt_fecha_comienzo_funcionamiento.Text);
                 int cantidad_dias = int.Parse(txt_cantidad_dias.Text);
                 int cantidad_noches = int.Parse(txt_cantidad_noches.Text);
                 string descripcion_paquete = txt_descripcion_paquete.Text;
-                int id_alojamiento = ddl_alojamiento.SelectedIndex;
+                int id_alojamiento = int.Parse(ddl_alojamiento.SelectedValue);
                 string descripcion_alojmiento = txt_descripcion_alojamiento.Text;
-                int id_pension = ddl_pension.SelectedIndex;
-                int id_habitacion = ddl_habitacion.SelectedIndex;
-                int id_transporte = ddl_transporte.SelectedIndex;
+                int id_pension = int.Parse(ddl_pension.SelectedValue);
+                int id_habitacion = int.Parse(ddl_habitacion.SelectedValue);
+                int id_transporte = int.Parse(ddl_transporte.SelectedValue);
                 decimal monto_excursiones = decimal.Parse(txt_monto_excurciones.Text);
                 decimal descuento_menor = decimal.Parse(txt_descuento_menor.Text);
 
@@ -455,54 +469,54 @@ namespace Capa_de_presentacion
                 Capa_de_entidad.Alojamiento a = Capa_de_negocio.Gestor_Alojamento.buscar_por_id(id_alojamiento);
 
                 txt_descripcion_alojamiento.Text = a.descripcion;
-                ddl_pension.SelectedIndex = a.pension.id_pension;
-                ddl_habitacion.SelectedIndex = a.habitacion.id_habitacion;    
+                ddl_pension.SelectedValue = a.pension.id_pension.ToString();
+                ddl_habitacion.SelectedValue = a.habitacion.id_habitacion.ToString();    
             }
             else
             {
                 txt_descripcion_alojamiento.Text = "";
-                ddl_pension.SelectedIndex = 0;
-                ddl_habitacion.SelectedIndex = 0;
+                ddl_pension.SelectedValue = "Pension";
+                ddl_habitacion.SelectedValue = "Habitacion";
             }
         }
 
         protected void ddl_destino_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int id_destino = ddl_destino.SelectedIndex;
+            int id_destino;
 
-            //ddl_alojamiento.Items.Clear();
-
-            if (id_destino != 0)
+            if (int.TryParse(ddl_destino.SelectedValue,out id_destino)) 
             {
-                ddl_alojamiento.DataSource = Capa_de_negocio.Gestor_Alojamento.obtener_alojamientos(id_destino);
-                ddl_alojamiento.DataValueField = "id_alojamiento";
-                ddl_alojamiento.DataTextField = "nombre";
-                ddl_alojamiento.DataBind();
-                ddl_alojamiento.Items.Insert(0, "Seleccione un alojamiento");
-                txt_descripcion_alojamiento.Text = "";
-                ddl_pension.SelectedIndex = 0;
-                ddl_habitacion.SelectedIndex = 0;
+                if (id_destino != 0)
+                {
+                    ddl_alojamiento.DataSource = Capa_de_negocio.Gestor_Alojamento.obtener_alojamientos(id_destino);
+                    ddl_alojamiento.DataValueField = "id_alojamiento";
+                    ddl_alojamiento.DataTextField = "nombre";
+                    ddl_alojamiento.DataBind();
+                    ddl_alojamiento.Items.Insert(0, "Seleccione un alojamiento");
+                    txt_descripcion_alojamiento.Text = "";
+                    ddl_pension.SelectedValue = "Pension";
+                    ddl_habitacion.SelectedValue = "Habitacion";
 
-                ddl_transporte.DataSource = Capa_de_negocio.Gestor_Transporte.obtener_transportes(id_destino);
-                ddl_transporte.DataValueField = "id_transporte";
-                ddl_transporte.DataTextField = "descripcion";
-                ddl_transporte.DataBind();
-                ddl_transporte.Items.Insert(0, "Seleccione un transporte");
-                
+                    ddl_transporte.DataSource = Capa_de_negocio.Gestor_Transporte.obtener_transportes(id_destino);
+                    ddl_transporte.DataValueField = "id_transporte";
+                    ddl_transporte.DataTextField = "descripcion";
+                    ddl_transporte.DataBind();
+                    ddl_transporte.Items.Insert(0, "Seleccione un transporte");
+
+                }
             }
             else
             {
                 ddl_alojamiento.Items.Clear();
                 ddl_alojamiento.Items.Insert(0, "Seleccione un alojamiento");
                 txt_descripcion_alojamiento.Text = "";
-                ddl_pension.SelectedIndex = 0;
-                ddl_habitacion.SelectedIndex = 0;
+                ddl_pension.SelectedValue = "Pension";
+                ddl_habitacion.SelectedValue = "Habitacion";
 
                 ddl_transporte.Items.Clear();
                 ddl_transporte.Items.Insert(0, "Seleccione un transporte");
                 
             }
-
         }
 
         protected void chk_descuento_menor_CheckedChanged(object sender, EventArgs e)

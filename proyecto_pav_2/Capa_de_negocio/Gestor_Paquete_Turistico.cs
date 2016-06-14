@@ -21,7 +21,7 @@ namespace Capa_de_negocio
                 "PT.cantidad_dias as 'cantidad_dias',PT.cantidad_noches as 'cantidad_noches',PXT.fecha_comienzo_funcionamiento, " +
                 "PXT.fecha_alta from Paquete_Turistico PT join Paquete_X_Temporada PXT on PT.id_paquete_turistico = PXT.id_paquete_turistico " +
                 "join Temporada T on PXT.id_temporada = T.id_temporada join Destino D on PT.id_destino = D.id_destino " +
-                "where PT.estado = 1 order by PT.nombre_paquete";
+                "where PXT.estado = 1 order by PT.nombre_paquete";
             
             DataTable dt = new DataTable();
             dt = ad.leo_tabla(sql);
@@ -38,7 +38,7 @@ namespace Capa_de_negocio
                 "PT.cantidad_dias as 'cantidad_dias',PT.cantidad_noches as 'cantidad_noches',PXT.fecha_comienzo_funcionamiento, " +
                 "PXT.fecha_alta from Paquete_Turistico PT join Paquete_X_Temporada PXT on PT.id_paquete_turistico = PXT.id_paquete_turistico " +
                 "join Temporada T on PXT.id_temporada = T.id_temporada join Destino D on PT.id_destino = D.id_destino " +
-                "where PT.estado = 1 and PT.nombre_paquete like @nombre_paquete order by " + orden;
+                "where PXT.estado = 1 and PT.nombre_paquete like @nombre_paquete order by " + orden;
 
             dt=ad.leo_tabla("@nombre_paquete", filtro_a_buscar, sql);
 
@@ -206,7 +206,7 @@ namespace Capa_de_negocio
 
             sql = "UPDATE Paquete_X_Temporada SET " +
                 "id_paquete_turistico = " + p.id_paquete_turistico + ", id_temporada = " + p.temporada.id_temporada + 
-                ", fecha_comienzo_funcionamiento = "  + p.fecha_comienzo_funcionamiento.ToString("dd/MM/yyyy") +
+                ", fecha_comienzo_funcionamiento = '"  + p.fecha_comienzo_funcionamiento.ToString("dd/MM/yyyy") + "'" +
                 ", monto_excurciones = " + p.monto_excurciones.ToString().Replace(",",".") + ", descuento_menor = "+ p.descuento_menor +
                 " WHERE id_paquete_turistico = @id_paquete_turistico and id_temporada = @id_temporada";
 
@@ -219,8 +219,8 @@ namespace Capa_de_negocio
         {
             ad = new Capa_de_datos.Acceso_A_Datos();
 
-            sql = "UPDATE Paquete_Turistico SET " +
-                "estado = 0, fecha_baja = " + DateTime.Now.ToString("dd/MM/yyyy") +
+            sql = "UPDATE Paquete_X_Temporada SET " +
+                "estado = 0, fecha_baja = '" + DateTime.Now.ToString("dd/MM/yyyy") + "'" +
                 " WHERE id_paquete_turistico = @id_paquete_turistico";
 
             string parametro = "@id_paquete_turistico="+p.id_paquete_turistico;
