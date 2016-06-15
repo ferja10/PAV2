@@ -21,5 +21,16 @@ namespace Capa_de_entidad
         public DateTime fecha_baja { get; set; }
         public decimal monto_excurciones { get; set; }
         public decimal descuento_menor { get; set; }
+
+        public decimal precio
+        {
+            get { return transporte.precio + alojamiento.precio + monto_excurciones; }
+        }
+
+        public decimal precio_menor
+        {
+            get { return precio * (descuento_menor/100) ; }
+        }
+
     }
 }

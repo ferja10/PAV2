@@ -12,6 +12,6 @@ namespace Capa_de_entidad
         public string descripcion { get; set; }
         public Pension pension { get; set; }
         public Habitacion habitacion { get; set; }
-        public float precio { get; set; }
+        public decimal precio { get; set; }
     }
 }

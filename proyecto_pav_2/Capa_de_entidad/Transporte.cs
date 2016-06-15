@@ -11,6 +11,6 @@ namespace Capa_de_entidad
         public string nombre { get; set; }
         public string descripcion { get; set; }
         public Empresa empresa { get; set; }
-        public float precio { get; set; }
+        public decimal precio { get; set; }
     }
 }

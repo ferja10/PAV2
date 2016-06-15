@@ -324,7 +324,7 @@
                             <td class="text-left">
                                 
                                 <asp:TextBox ID="txt_descuento_menor" runat="server" Enabled="False" MaxLength="2"></asp:TextBox>
-                                <asp:CheckBox ID="chk_descuento_menor" runat="server" Text="Descuento" AutoPostBack="True" OnCheckedChanged="chk_descuento_menor_CheckedChanged" />
+                                <asp:CheckBox ID="chk_descuento_menor" runat="server" Text="Descuento" AutoPostBack="True" OnCheckedChanged="chk_descuento_menor_CheckedChanged" TextAlign="Left" />
                                 
                             </td>
                         </tr>
@@ -333,7 +333,9 @@
                                 
                             </td>
                             <td class="text-left">
-                                &nbsp;</td>
+                                <asp:FileUpload ID="fud_imagenes" runat="server" AllowMultiple="True" />
+                                <asp:RegularExpressionValidator ID="rev_fud_imagenes" runat="server" ErrorMessage="Debe seleccionar una imagen" CssClass="alert-danger" ValidationExpression="^(([a-zA-Z]:)|(\\{2}\w+)\$?)(\\(\w[\w].*))(.jpg|.JPG|.gif|.GIF|.png|.PNG|.jpeg|.JPEG)$" ControlToValidate="fud_imagenes"></asp:RegularExpressionValidator>
+                            </td>
                         </tr>
                     </table>
                 </asp:Panel>
@@ -343,7 +345,7 @@
             <td class="auto-style10">
                                 <asp:Panel ID="Panel1" runat="server" Width="1224px">
                                     <asp:Button ID="btn_aceptar" runat="server" OnClick="btn_aceptar_Click" Style="margin-left: 532px" Text="Aceptar" />
-                                    <asp:Button ID="btn_cancelar" runat="server" OnClick="btn_cancelar_Click" Style="margin-left: 15px" Text="Cancelar" Width="67px" CausesValidation="false" />
+                                    <asp:Button ID="btn_cancelar" runat="server" OnClick="btn_cancelar_Click" Style="margin-left: 15px" Text="Cancelar" Width="77px" CausesValidation="false" />
                                 </asp:Panel>
                             </td>
         </tr>

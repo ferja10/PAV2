@@ -160,6 +160,81 @@ namespace Capa_de_negocio
             return pt;
         }
 
+        public static List<Capa_de_entidad.Paquete_Turistico> obtener_lista(int id_temporada) 
+        {
+            Capa_de_datos.Acceso_A_Datos ad = new Capa_de_datos.Acceso_A_Datos();
+            Capa_de_entidad.Paquete_Turistico p = new Capa_de_entidad.Paquete_Turistico();
+            Capa_de_entidad.Transporte t = new Capa_de_entidad.Transporte();
+            Capa_de_entidad.Alojamiento a = new Capa_de_entidad.Alojamiento();
+            Capa_de_entidad.Destino d = new Capa_de_entidad.Destino();
+
+            lpt = new List<Capa_de_entidad.Paquete_Turistico>();
+
+            sql = "SELECT P.id_paquete_turistico,P.nombre_paquete,P.descripcion,P.cantidad_dias,P.cantidad_noches,D.nombre as nombre_destino,Tr.precio as precio_transporte,A.precio as precio_alojamiento,PXT.monto_excurciones,PXT.descuento_menor " +
+                "from Paquete_Turistico P join Paquete_X_Temporada PXT on P.id_paquete_turistico = PXT.id_paquete_turistico " +
+                "join Temporada T on PXT.id_temporada = T.id_temporada join Transporte Tr on P.id_transporte = Tr.id_transporte " +
+                "join Alojamiento A on P.id_alojamiento = A.id_alojamiento " +
+                "join Destino D on P.id_destino = D.id_destino " +
+                "WHERE T.id_temporada = @id_temporada and PXT.fecha_comienzo_funcionamiento <= GETDATE()";
+
+            SqlDataReader dr = ad.leo_tabla_lectura("@id_temporada", id_temporada.ToString(), sql);
+
+            while (dr.Read())
+            {
+                if (dr["id_paquete_turistico"] != DBNull.Value)
+                {
+                    p.id_paquete_turistico = (int)dr["id_paquete_turistico"];
+                }
+
+                p.nombre_paquete = dr["nombre_paquete"].ToString();
+
+                p.descripcion = dr["descripcion"].ToString();
+
+                if (dr["cantidad_dias"] != DBNull.Value)
+                {
+                    p.cantidad_dias = (int)dr["cantidad_dias"];
+                }
+
+                if (dr["cantidad_noches"] != DBNull.Value)
+                {
+                    p.cantidad_noches = (int)dr["cantidad_noches"];
+                }
+
+                p.destino = new Capa_de_entidad.Destino();
+                d.nombre = dr["nombre_destino"].ToString();
+                p.destino = d;
+
+                if (dr["precio_transporte"] != DBNull.Value)
+                {
+                    p.transporte = new Capa_de_entidad.Transporte();
+                    t.precio = (decimal)dr["precio_transporte"];
+                    p.transporte = t;
+                }
+
+                if (dr["precio_alojamiento"] != DBNull.Value)
+                {
+                    p.alojamiento = new Capa_de_entidad.Alojamiento();
+                    a.precio = (decimal)dr["precio_alojamiento"];
+                }
+
+                if (dr["monto_excurciones"] != DBNull.Value)
+                {
+                    p.monto_excurciones = (decimal)dr["monto_excurciones"];
+                }
+                if (dr["descuento_menor"] != DBNull.Value)
+                {
+                    p.descuento_menor = (decimal)dr["descuento_menor"];
+                }
+
+                lpt.Add(p);
+            }
+
+            dr.Close();
+
+            ad.cerrar_conexion();
+            return lpt;
+        }
+
         public static void agregar_paquete(Capa_de_entidad.Paquete_Turistico p) 
         {
             ad = new Capa_de_datos.Acceso_A_Datos();
