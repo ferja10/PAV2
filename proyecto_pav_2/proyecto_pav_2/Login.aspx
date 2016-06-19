@@ -2,6 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Login ID="Login1" runat="server" OnAuthenticate="Login1_Authenticate" Height="163px" Width="316px">
+    <asp:Login ID="Login1" runat="server" OnAuthenticate="Login1_Authenticate" Height="163px" Width="316px" LoginButtonText="Iniciar Sesion" PasswordLabelText="Contraseña:" RememberMeText="Recordarme" TitleText="Sesion" UserNameLabelText="Usuario:">
     </asp:Login>
 </asp:Content>

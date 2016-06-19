@@ -49,10 +49,15 @@ namespace Capa_de_negocio
         {
             string id = "" + id_paquete_turistico;
 
-            sql = "select PT.*,PXT.fecha_comienzo_funcionamiento,PXT.fecha_alta,T.id_temporada ,A.id_habitacion, " +
-                "A.descripcion as 'descripcion_alojamiento',A.id_pension, PXT.monto_excurciones, PXT.descuento_menor " +
+            sql = "select PT.*,D.descripcion as descripcion_destino,D.nombre,PXT.fecha_comienzo_funcionamiento,PXT.fecha_alta,T.id_temporada ,A.id_habitacion, " +
+                "A.descripcion as 'descripcion_alojamiento',A.id_pension,H.nombre as nombre_habitacion,Pe.nombre as nombre_pension, PXT.monto_excurciones, PXT.descuento_menor, " +
+                "Tr.nombre as nombre_transporte,Tr.descripcion as descripcion_transporte,E.razon_social " +
                 "from Paquete_Turistico PT join Paquete_X_Temporada PXT on PT.id_paquete_turistico = PXT.id_paquete_turistico " +
                 "join Temporada T on PXT.id_temporada = T.id_temporada join Alojamiento A on PT.id_alojamiento = A.id_alojamiento " +
+                "join Transporte Tr on PT.id_transporte = Tr.id_transporte join Destino D on PT.id_destino = D.id_destino " +
+                "join Transporte_X_Destino TXD on (Tr.id_transporte = TXD.id_transporte and TXD.id_destino = D.id_destino) " +
+                "join Empresa E on Tr.id_empresa = E.id_empresa join Habitacion H on A.id_habitacion = H.id_habitacion " +
+                "join Pension Pe on A.id_pension = Pe.id_pension " +
                 "where PT.id_paquete_turistico = @id_paquete_turistico";
 
 
@@ -85,19 +90,26 @@ namespace Capa_de_negocio
                     pt.cantidad_noches = (int)dr["cantidad_noches"];
                 }
 
+                Capa_de_entidad.Destino d = new Capa_de_entidad.Destino();
                 if (dr["id_destino"] != DBNull.Value)
                 {
-                    Capa_de_entidad.Destino d = new Capa_de_entidad.Destino();
                     d.id_destino = (int)dr["id_destino"];
-                    pt.destino = d;
                 }
+                d.nombre = dr["nombre"].ToString();
+                d.descripcion = dr["descripcion_destino"].ToString();
+                pt.destino = d;
 
+                Capa_de_entidad.Transporte tr = new Capa_de_entidad.Transporte();
                 if (dr["id_transporte"] != DBNull.Value)
                 {
-                    Capa_de_entidad.Transporte t = new Capa_de_entidad.Transporte();
-                    t.id_transporte = (int)dr["id_transporte"];
-                    pt.transporte = t;
+                    tr.id_transporte = (int)dr["id_transporte"];
                 }
+                tr.nombre = dr["nombre_transporte"].ToString();
+                tr.descripcion = dr["descripcion_transporte"].ToString();
+                Capa_de_entidad.Empresa e = new Capa_de_entidad.Empresa();
+                e.razon_social = dr["razon_social"].ToString();
+                tr.empresa = e;
+                pt.transporte = tr;
 
                 if (dr["id_alojamiento"] != DBNull.Value)
                 {
@@ -108,6 +120,7 @@ namespace Capa_de_negocio
                     {
                         Capa_de_entidad.Habitacion h = new Capa_de_entidad.Habitacion();
                         h.id_habitacion = (int)dr["id_habitacion"];
+                        h.nombre = dr["nombre_habitacion"].ToString();
                         a.habitacion = h;
                     }
 
@@ -120,6 +133,7 @@ namespace Capa_de_negocio
                     {
                         Capa_de_entidad.Pension p = new Capa_de_entidad.Pension();
                         p.id_pension = (int)dr["id_pension"];
+                        p.nombre = dr["nombre_pension"].ToString();
                         a.pension = p;
                     }
 
@@ -163,24 +177,26 @@ namespace Capa_de_negocio
         public static List<Capa_de_entidad.Paquete_Turistico> obtener_lista(int id_temporada) 
         {
             Capa_de_datos.Acceso_A_Datos ad = new Capa_de_datos.Acceso_A_Datos();
-            Capa_de_entidad.Paquete_Turistico p = new Capa_de_entidad.Paquete_Turistico();
-            Capa_de_entidad.Transporte t = new Capa_de_entidad.Transporte();
-            Capa_de_entidad.Alojamiento a = new Capa_de_entidad.Alojamiento();
-            Capa_de_entidad.Destino d = new Capa_de_entidad.Destino();
-
+            
             lpt = new List<Capa_de_entidad.Paquete_Turistico>();
 
-            sql = "SELECT P.id_paquete_turistico,P.nombre_paquete,P.descripcion,P.cantidad_dias,P.cantidad_noches,D.nombre as nombre_destino,Tr.precio as precio_transporte,A.precio as precio_alojamiento,PXT.monto_excurciones,PXT.descuento_menor " +
+            sql = "SELECT P.id_paquete_turistico,P.nombre_paquete,P.descripcion,P.cantidad_dias,P.cantidad_noches,D.nombre as nombre_destino,D.imagen,Tr.precio as precio_transporte,A.precio as precio_alojamiento,PXT.monto_excurciones,PXT.descuento_menor " +
                 "from Paquete_Turistico P join Paquete_X_Temporada PXT on P.id_paquete_turistico = PXT.id_paquete_turistico " +
                 "join Temporada T on PXT.id_temporada = T.id_temporada join Transporte Tr on P.id_transporte = Tr.id_transporte " +
                 "join Alojamiento A on P.id_alojamiento = A.id_alojamiento " +
                 "join Destino D on P.id_destino = D.id_destino " +
-                "WHERE T.id_temporada = @id_temporada and PXT.fecha_comienzo_funcionamiento <= GETDATE()";
+                "WHERE T.id_temporada = @id_temporada and PXT.fecha_comienzo_funcionamiento <= GETDATE() order by P.nombre_paquete";
 
             SqlDataReader dr = ad.leo_tabla_lectura("@id_temporada", id_temporada.ToString(), sql);
 
             while (dr.Read())
             {
+
+                Capa_de_entidad.Paquete_Turistico p = new Capa_de_entidad.Paquete_Turistico();
+                Capa_de_entidad.Transporte t = new Capa_de_entidad.Transporte();
+                Capa_de_entidad.Alojamiento a = new Capa_de_entidad.Alojamiento();
+                Capa_de_entidad.Destino d = new Capa_de_entidad.Destino();
+
                 if (dr["id_paquete_turistico"] != DBNull.Value)
                 {
                     p.id_paquete_turistico = (int)dr["id_paquete_turistico"];
@@ -202,6 +218,7 @@ namespace Capa_de_negocio
 
                 p.destino = new Capa_de_entidad.Destino();
                 d.nombre = dr["nombre_destino"].ToString();
+                d.imagen = dr["imagen"].ToString();
                 p.destino = d;
 
                 if (dr["precio_transporte"] != DBNull.Value)
@@ -215,6 +232,7 @@ namespace Capa_de_negocio
                 {
                     p.alojamiento = new Capa_de_entidad.Alojamiento();
                     a.precio = (decimal)dr["precio_alojamiento"];
+                    p.alojamiento = a;
                 }
 
                 if (dr["monto_excurciones"] != DBNull.Value)
@@ -228,8 +246,6 @@ namespace Capa_de_negocio
 
                 lpt.Add(p);
             }
-
-            dr.Close();
 
             ad.cerrar_conexion();
             return lpt;

@@ -544,24 +544,6 @@ namespace Capa_de_presentacion {
         protected global::System.Web.UI.WebControls.CheckBox chk_descuento_menor;
         
         /// <summary>
-        /// fud_imagenes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fud_imagenes;
-        
-        /// <summary>
-        /// rev_fud_imagenes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev_fud_imagenes;
-        
-        /// <summary>
         /// Panel1 control.
         /// </summary>
         /// <remarks>

@@ -8,7 +8,6 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/shop-homepage.css" rel="stylesheet" />
-    <link href="js/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" />
     
     
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -55,6 +54,15 @@
                             <a runat="server" href="Informe.aspx" id="mnu_informes">Informes</a>
                         </li>
                     </ul>
+                    <div style="color: #FFFFFF">
+                        <asp:LoginView ID="LoginView1" runat="server">
+                            <AnonymousTemplate>
+                                Aún no se ha logueado. Haga click en iniciar sesion
+                            </AnonymousTemplate>
+                        </asp:LoginView>
+                        <asp:LoginName ID="LoginName1" runat="server" />
+                        <asp:LoginStatus ID="LoginStatus1" runat="server" LoginText="Iniciar_Sesion" LogoutText="Finalizar Sesion" />
+                    </div>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>

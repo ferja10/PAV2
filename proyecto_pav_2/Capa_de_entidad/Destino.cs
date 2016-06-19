@@ -10,5 +10,6 @@ namespace Capa_de_entidad
         public int id_destino { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
+        public string imagen { get; set; }
     }
 }

@@ -275,6 +275,16 @@ namespace Capa_de_presentacion
             ddl_transporte.SelectedValue = p.transporte.id_transporte.ToString();
             txt_monto_excurciones.Text = p.monto_excurciones.ToString();
             txt_descuento_menor.Text = p.descuento_menor.ToString();
+            if (txt_descuento_menor.Text != "0")
+            {
+                chk_descuento_menor.Checked = true;
+                txt_descuento_menor.Enabled = true;
+            }
+            else
+            {
+                chk_descuento_menor.Checked = false;
+                txt_descuento_menor.Enabled = false;
+            }
         }
 
         private void refrescar_campos() 
@@ -313,6 +323,9 @@ namespace Capa_de_presentacion
 
             lbl_nro_paquete_turistico.Visible = false;
             lbl_id_paquete_turistico.Visible = false;
+
+            chk_descuento_menor.Checked = false;
+            txt_descuento_menor.Enabled = false;
         }
 
         private void grabar() 
@@ -528,6 +541,7 @@ namespace Capa_de_presentacion
             else
             {
                 txt_descuento_menor.Enabled = false;
+                txt_descuento_menor.Text = "";
             }
         }
 

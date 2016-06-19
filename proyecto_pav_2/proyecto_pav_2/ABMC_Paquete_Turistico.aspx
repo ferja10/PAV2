@@ -29,6 +29,15 @@
             width: 309px;
             text-align: left;
         }
+        .auto-style13 {
+            width: 309px;
+            text-align: left;
+            height: 24px;
+        }
+        .auto-style14 {
+            text-align: left;
+            height: 24px;
+        }
     </style>
 
 </asp:Content>
@@ -89,7 +98,7 @@
                             <td class="auto-style12">
                                 
                                 <asp:Label ID="ldl_datos_paquete" runat="server" style="text-decoration: underline; font-weight: 700" Text="Datos del Paquete Turístico"></asp:Label>
-                                <br />
+                               
                                 
                             </td>
                             <td class="text-left">
@@ -104,8 +113,9 @@
                                 <asp:Label ID="lbl_temporada1" runat="server" Text="Temporada: "></asp:Label>
                             </td>
                             <td class="text-left">
-                                <asp:DropDownList ID="ddl_temporada" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddl_temporada" runat="server" Height="16px" Width="234px"></asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="rfv_ddl_temporada" runat="server" ErrorMessage="Debe seleccionar una temporada" InitialValue="Seleccione una temporada" ControlToValidate="ddl_temporada" CssClass="alert-danger"></asp:RequiredFieldValidator>
+                                <br />
                             </td>
                         </tr>
                         <tr>
@@ -115,6 +125,7 @@
                             <td class="text-left">
                                 <asp:TextBox ID="txt_nombre" runat="server" MaxLength="100" placeHolder="Nombre Paquete" Width="532px"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfv_txt_nombre" runat="server" ErrorMessage="Debe ingresar un nombre" ControlToValidate="txt_nombre" CssClass="alert-danger"></asp:RequiredFieldValidator>
+                                
                             </td>
                         </tr>
                         <tr>
@@ -122,7 +133,7 @@
                                 <asp:Label ID="lbl_destino" runat="server" Text="Destino: "></asp:Label>
                             </td>
                             <td class="text-left">
-                                <asp:DropDownList ID="ddl_destino" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_destino_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="ddl_destino" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_destino_SelectedIndexChanged" Height="16px" Width="239px"></asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="rfv_ddl_destino" runat="server" ErrorMessage="Debe seleccionar un destino" ControlToValidate="ddl_destino" InitialValue="Seleccione un destino" CssClass="alert-danger"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -196,7 +207,7 @@
                                 
                             </td>
                             <td class="text-left">
-                                <asp:DropDownList ID="ddl_alojamiento" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_alojamiento_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="ddl_alojamiento" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_alojamiento_SelectedIndexChanged" Height="16px" Width="330px"></asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="rfv_ddl_alojamiento" runat="server" ErrorMessage="Debe seleccionar un alojamiento" ControlToValidate="ddl_alojamiento" InitialValue="Seleccione un alojamiento" CssClass="alert-danger"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -220,7 +231,7 @@
                             </td>
                             <td class="text-left">
                                 
-                                <asp:DropDownList ID="ddl_pension" runat="server" Enabled="False">
+                                <asp:DropDownList ID="ddl_pension" runat="server" Enabled="False" Height="16px" Width="330px">
                                 </asp:DropDownList>
                                 
                             </td>
@@ -233,7 +244,7 @@
                             </td>
                             <td class="text-left">
                                 
-                                <asp:DropDownList ID="ddl_habitacion" runat="server" Enabled="False">
+                                <asp:DropDownList ID="ddl_habitacion" runat="server" Enabled="False" Height="16px" Width="328px">
                                 </asp:DropDownList>
                                 
                             </td>
@@ -264,7 +275,7 @@
                                 
                             </td>
                             <td class="text-left">
-                                <asp:DropDownList ID="ddl_transporte" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddl_transporte" runat="server" Height="16px" Width="380px"></asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="rfv_ddl_transporte" runat="server" ErrorMessage="Debe seleccionar un transporte" ControlToValidate="ddl_transporte" InitialValue="Seleccione un transporte" CssClass="alert-danger"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -316,12 +327,12 @@
                                 &nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style12">
+                            <td class="auto-style13">
                                 
                                 <asp:Label ID="lbl_descuento" runat="server" Text="Descuento Menor:"></asp:Label>
                                 
                             </td>
-                            <td class="text-left">
+                            <td class="auto-style14">
                                 
                                 <asp:TextBox ID="txt_descuento_menor" runat="server" Enabled="False" MaxLength="2"></asp:TextBox>
                                 <asp:CheckBox ID="chk_descuento_menor" runat="server" Text="Descuento" AutoPostBack="True" OnCheckedChanged="chk_descuento_menor_CheckedChanged" TextAlign="Left" />
@@ -333,9 +344,7 @@
                                 
                             </td>
                             <td class="text-left">
-                                <asp:FileUpload ID="fud_imagenes" runat="server" AllowMultiple="True" />
-                                <asp:RegularExpressionValidator ID="rev_fud_imagenes" runat="server" ErrorMessage="Debe seleccionar una imagen" CssClass="alert-danger" ValidationExpression="^(([a-zA-Z]:)|(\\{2}\w+)\$?)(\\(\w[\w].*))(.jpg|.JPG|.gif|.GIF|.png|.PNG|.jpeg|.JPEG)$" ControlToValidate="fud_imagenes"></asp:RegularExpressionValidator>
-                            </td>
+                                &nbsp;</td>
                         </tr>
                     </table>
                 </asp:Panel>

@@ -62,15 +62,28 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\shop-homepage.css" />
-    <Content Include="Detalle_Reserva.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="img\alta gracia.jpg" />
+    <Content Include="img\capilla del monte.jpg" />
+    <Content Include="img\carlos paz.jpg" />
     <Content Include="img\carrucel_1.jpg" />
     <Content Include="img\carrucel_2.jpg" />
     <Content Include="img\carrucel_3.jpg" />
-    <Content Include="img\punilla.jpg" />
-    <Content Include="img\punilla_invierno.jpg" />
+    <Content Include="img\cordoba.jpg" />
+    <Content Include="img\cosquin.jpg" />
+    <Content Include="img\jesus maria.jpg" />
+    <Content Include="img\la cumbre.jpg" />
+    <Content Include="img\la cumbrecita.jpg" />
+    <Content Include="img\la falda.jpg" />
+    <Content Include="img\los reartes.jpg" />
+    <Content Include="img\mina clavero.jpg" />
+    <Content Include="img\rio ceballos.jpg" />
+    <Content Include="img\santa rosa de calamuchita.jpg" />
+    <Content Include="img\villa general belgrano.jpg" />
+    <Content Include="img\villa maria.jpg" />
     <Content Include="index.html" />
     <Content Include="Informe.aspx" />
+    <Content Include="Info_Paquete.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -127,13 +140,6 @@
     <Compile Include="Contacto.aspx.designer.cs">
       <DependentUpon>Contacto.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Detalle_Reserva.aspx.cs">
-      <DependentUpon>Detalle_Reserva.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Detalle_Reserva.aspx.designer.cs">
-      <DependentUpon>Detalle_Reserva.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,6 +149,13 @@
     </Compile>
     <Compile Include="Informe.aspx.designer.cs">
       <DependentUpon>Informe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Info_Paquete.aspx.cs">
+      <DependentUpon>Info_Paquete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Info_Paquete.aspx.designer.cs">
+      <DependentUpon>Info_Paquete.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
