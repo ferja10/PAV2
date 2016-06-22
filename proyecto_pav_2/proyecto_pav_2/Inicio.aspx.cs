@@ -47,10 +47,14 @@ namespace Capa_de_presentacion
 
         protected void rpt_paquetes_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            int id_paquete_turistico = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName == "Ver")
             {
-                int id_paquete_turistico = Convert.ToInt32(e.CommandArgument);
                 visualizar_paquete(id_paquete_turistico);
+            }
+            else
+            {
+                agregar_paquete(id_paquete_turistico);
             }
         }
 
@@ -63,6 +67,30 @@ namespace Capa_de_presentacion
             Session["Ver"] = p;
 
             Response.Redirect("Info_Paquete.aspx");
+        }
+
+        private void agregar_paquete(int id_paquete_turistico) 
+        {
+            Capa_de_entidad.Paquete_Turistico p = new Capa_de_entidad.Paquete_Turistico();
+            
+            p = Capa_de_negocio.Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
+
+            Capa_de_entidad.Item_Paquete_turistico ipt = new Capa_de_entidad.Item_Paquete_turistico();
+
+            ipt.paquete_turistico = p;
+            
+            List<Capa_de_entidad.Item_Paquete_turistico> lst = new List<Capa_de_entidad.Item_Paquete_turistico>();
+
+            if (Session["Reserva"] != null)
+            {
+                lst = (List<Capa_de_entidad.Item_Paquete_turistico>)Session["Reserva"];
+            }
+
+            lst.Add(ipt);
+
+            Session["Reserva"] = lst;
+
+            Response.Redirect("Reserva.aspx");
         }
 
     }

@@ -12,7 +12,7 @@
         <tr>
             <td>
                 <asp:Panel ID="pnl_nombre_paquete" runat="server">
-                    <div class="text-left">
+                    <div class="text-center">
                         <asp:Label ID="Label1" runat="server" style="font-weight: 700; font-size: large" Text="Información del paquete"></asp:Label>
                         <br />
                         <br />
@@ -31,7 +31,7 @@
                         <asp:Label ID="lbl_destino" runat="server" CssClass="auto-style1" Text="Label"></asp:Label>
                         </strong>
                         <br />
-                        <asp:TextBox ID="txt_info_destino" runat="server" TextMode="MultiLine" Height="284px" Width="553px"></asp:TextBox>
+                        <asp:TextBox ID="txt_info_destino" runat="server" TextMode="MultiLine" Height="284px" Width="553px" ReadOnly="True"></asp:TextBox>
                         <br />
                         <br />
                         <strong>
@@ -39,7 +39,7 @@
                         <asp:Label ID="lbl_alojamiento" runat="server" CssClass="auto-style1" Text="Label"></asp:Label>
                         </strong>
                         <br />
-                        <asp:TextBox ID="txt_info_alojamiento" runat="server" TextMode="MultiLine" Height="292px" Width="554px"></asp:TextBox>
+                        <asp:TextBox ID="txt_info_alojamiento" runat="server" TextMode="MultiLine" Height="292px" Width="554px" ReadOnly="True"></asp:TextBox>
                         <br />
                         <br />
                         <strong>
@@ -47,7 +47,7 @@
                         <asp:Label ID="lbl_transporte" runat="server" CssClass="auto-style1" Text="Label"></asp:Label>
                         </strong>
                         <br />
-                        <asp:TextBox ID="txt_info_transporte" runat="server" TextMode="MultiLine" Height="58px" Width="548px"></asp:TextBox>
+                        <asp:TextBox ID="txt_info_transporte" runat="server" TextMode="MultiLine" Height="58px" Width="548px" ReadOnly="True"></asp:TextBox>
                     </div>
                 </asp:Panel>
             </td>
@@ -55,7 +55,7 @@
         <tr>
             <td>
                 <asp:Panel ID="pnl_botones" runat="server">
-                    <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" Width="78px" />
+                    <asp:Button ID="btn_aceptar" runat="server" Text="Aceptar" Width="78px" OnClick="btn_aceptar_Click" />
                     <asp:Button ID="btn_comprar" runat="server" Text="Comprar" />
                 </asp:Panel>
             </td>

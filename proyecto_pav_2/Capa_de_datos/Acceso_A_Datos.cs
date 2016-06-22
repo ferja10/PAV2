@@ -46,13 +46,21 @@ namespace Capa_de_datos
         /// <returns>SqlDataReader</returns>
         public DataTable leo_tabla(string sql) 
         {
-            cmd = new SqlCommand(sql, cn);
-            dt = new DataTable();
-            abrir_conexion();
-            dr = cmd.ExecuteReader();
-            dt.Load(dr);
-            cerrar_conexion();
-            return dt;
+            try
+            {
+                cmd = new SqlCommand(sql, cn);
+                dt = new DataTable();
+                abrir_conexion();
+                dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cerrar_conexion();
+                return dt;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
 
 
@@ -65,14 +73,23 @@ namespace Capa_de_datos
         /// <returns>DataTable</returns>
         public DataTable leo_tabla(string parametro,string nombre_parametro, string sql) 
         {
-            dt = new DataTable();
-            cmd = new SqlCommand(sql, cn);
-            cmd.Parameters.Add(new SqlParameter(parametro, "%" + nombre_parametro + "%"));
-            abrir_conexion();
-            dr = cmd.ExecuteReader();
-            dt.Load(dr);
-            cerrar_conexion();
-            return dt;
+            try
+            {
+                dt = new DataTable();
+                cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.Add(new SqlParameter(parametro, "%" + nombre_parametro + "%"));
+                abrir_conexion();
+                dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cerrar_conexion();
+                return dt;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+
         }
 
         /// <summary>
@@ -84,25 +101,46 @@ namespace Capa_de_datos
         /// <returns>SqlDataReader</returns>
         public SqlDataReader leo_tabla_lectura(string parametro, string nombre_parametro, string sql) 
         {
-            cmd = new SqlCommand(sql, cn);
-            cmd.Parameters.Add(new SqlParameter(parametro,nombre_parametro));
-            abrir_conexion();
-            dr = cmd.ExecuteReader();
-            //cerrar_conexion();
-            return dr;
+            try
+            {
+                cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.Add(new SqlParameter(parametro, nombre_parametro));
+                abrir_conexion();
+                dr = cmd.ExecuteReader();
+                //cerrar_conexion();
+                return dr;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+
+            
         }
 
         public SqlDataReader leo_tabla_lectura(string sql, string parametros) 
         {
-            if (parametros.Trim() != "")
+
+            try
             {
-                agrgar_parametros(sql, parametros);
+                if (parametros.Trim() != "")
+                {
+                    agrgar_parametros(sql, parametros);
 
-                abrir_conexion();
+                    abrir_conexion();
 
+                }
+
+                return dr = cmd.ExecuteReader();
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
 
-            return dr = cmd.ExecuteReader();
+            
         }
 
         /// <summary>
@@ -112,11 +150,21 @@ namespace Capa_de_datos
         /// <returns>SqlDataReader</returns>
         public SqlDataReader leo_tabla_lectura(string sql) 
         {
-            cmd = new SqlCommand(sql, cn);
-            abrir_conexion();
-            dr = cmd.ExecuteReader();
-            //cerrar_conexion();
-            return dr;
+            try
+            {
+                cmd = new SqlCommand(sql, cn);
+                abrir_conexion();
+                dr = cmd.ExecuteReader();
+                //cerrar_conexion();
+                return dr;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+
+           
         }
 
         /// <summary>
@@ -126,19 +174,29 @@ namespace Capa_de_datos
         /// <param name="parametros">parámetro con su valor con el siguiente formato: "@parametro1=valor1,@parametro2=valor2...@parametroN=valorN"</param>
         public void insertar(string sql,string parametros) 
         {
-         
-            if (parametros.Trim() != "")
+
+            try
             {
-                cmd = new SqlCommand(sql, cn);
+                if (parametros.Trim() != "")
+                {
+                    cmd = new SqlCommand(sql, cn);
 
-                agrgar_parametros(sql, parametros);
+                    agrgar_parametros(sql, parametros);
 
-                abrir_conexion();
+                    abrir_conexion();
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                cerrar_conexion();
+                    cerrar_conexion();
+                }
             }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+
+            
  
         }
 
@@ -149,16 +207,26 @@ namespace Capa_de_datos
         /// <param name="parametros">parámetro con su valor con el siguiente formato: "@parametro1=valor1,@parametro2=valor2...@parametroN=valorN"</param>
         public void modificar(string sql, string parametros) 
         {
-            if (parametros.Trim() != "")
+            try
             {
-                agrgar_parametros(sql, parametros);
+                if (parametros.Trim() != "")
+                {
+                    agrgar_parametros(sql, parametros);
 
-                abrir_conexion();
+                    abrir_conexion();
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                cerrar_conexion();
+                    cerrar_conexion();
+                }
             }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+
+            
         }
 
         private void agrgar_parametros(string sql, string parametros) 

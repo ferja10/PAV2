@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ABMcliente.aspx" />
     <Content Include="ABMC_Paquete_Turistico.aspx" />
     <Content Include="Contacto.aspx" />
     <Content Include="css\bootstrap.css" />
@@ -126,6 +127,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMcliente.aspx.cs">
+      <DependentUpon>ABMcliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMcliente.aspx.designer.cs">
+      <DependentUpon>ABMcliente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ABMC_Paquete_Turistico.aspx.cs">
       <DependentUpon>ABMC_Paquete_Turistico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

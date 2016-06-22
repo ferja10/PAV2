@@ -26,5 +26,10 @@ namespace Capa_de_presentacion
             lbl_transporte.Text = p.transporte.empresa.razon_social;
             txt_info_transporte.Text = "Datos del servicio de transporte " + p.transporte.nombre + ". " + p.transporte.descripcion;
         }
+
+        protected void btn_aceptar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Inicio.aspx");
+        }
     }
 }

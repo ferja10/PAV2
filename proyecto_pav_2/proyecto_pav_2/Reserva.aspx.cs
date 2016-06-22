@@ -11,7 +11,12 @@ namespace Capa_de_presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+            {
+                grv_reserva.DataSource = (List<Capa_de_entidad.Item_Paquete_turistico>)Session["Reserva"];
+                grv_reserva.DataBind();
+
+            }
         }
     }
 }
