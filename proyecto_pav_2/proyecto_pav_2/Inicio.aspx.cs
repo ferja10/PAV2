@@ -15,7 +15,9 @@ namespace Capa_de_presentacion
             {
                 cargar_temporadas();
                 cargar_paquetes();
+
             }
+
         }
 
         private void cargar_temporadas() 
@@ -69,28 +71,61 @@ namespace Capa_de_presentacion
             Response.Redirect("Info_Paquete.aspx");
         }
 
-        private void agregar_paquete(int id_paquete_turistico) 
+        private void agregar_paquete(int id_paquete_turistico)
         {
             Capa_de_entidad.Paquete_Turistico p = new Capa_de_entidad.Paquete_Turistico();
-            
+
             p = Capa_de_negocio.Gestor_Paquete_Turistico.buscar_por_id(id_paquete_turistico);
 
             Capa_de_entidad.Item_Paquete_turistico ipt = new Capa_de_entidad.Item_Paquete_turistico();
 
             ipt.paquete_turistico = p;
-            
+
             List<Capa_de_entidad.Item_Paquete_turistico> lst = new List<Capa_de_entidad.Item_Paquete_turistico>();
+
+            Boolean flag = true;
+
+            ViewState["exito"] = "exito";
 
             if (Session["Reserva"] != null)
             {
                 lst = (List<Capa_de_entidad.Item_Paquete_turistico>)Session["Reserva"];
+
+                try
+                {
+                    foreach (var item in lst)
+                    {
+
+                        if (ipt.paquete_turistico.id_paquete_turistico == item.paquete_turistico.id_paquete_turistico)
+                        {
+                            flag = false;
+                            
+                            ViewState["exito"] = "fracaso";
+
+                            if (ViewState["exito"].ToString().Equals("fracaso"))
+                            {
+                                string error = "Ya ha seleccionado este paquete anteriormente";
+
+                                this.Page.Response.Write("<script language='JavaScript'>window.alert('" + error + "');</script>");
+                            }
+
+                            break;
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
             }
+            if (flag)
+            {
+                lst.Add(ipt);
 
-            lst.Add(ipt);
+                Session["Reserva"] = lst;
 
-            Session["Reserva"] = lst;
-
-            Response.Redirect("Reserva.aspx");
+                Response.Redirect("Reserva.aspx");
+            }
         }
 
     }

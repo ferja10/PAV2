@@ -13,7 +13,8 @@ namespace Capa_de_datos
         private SqlConnection cn;
         private SqlCommand cmd;
         private SqlDataReader dr;
-        private DataTable dt; 
+        private DataTable dt;
+        private SqlTransaction tran;
         /// <summary>
         /// establece una nueva conexion de datos
         /// </summary>
@@ -53,7 +54,9 @@ namespace Capa_de_datos
                 abrir_conexion();
                 dr = cmd.ExecuteReader();
                 dt.Load(dr);
-                cerrar_conexion();
+
+                cerrar_conexion();    
+                
                 return dt;
             }
             catch (Exception)
@@ -126,6 +129,7 @@ namespace Capa_de_datos
             {
                 if (parametros.Trim() != "")
                 {
+                    cmd = new SqlCommand(sql, cn);
                     agrgar_parametros(sql, parametros);
 
                     abrir_conexion();
@@ -195,9 +199,6 @@ namespace Capa_de_datos
                 
                 throw;
             }
-
-            
- 
         }
 
         /// <summary>
@@ -211,6 +212,8 @@ namespace Capa_de_datos
             {
                 if (parametros.Trim() != "")
                 {
+                    cmd = new SqlCommand(sql, cn);
+
                     agrgar_parametros(sql, parametros);
 
                     abrir_conexion();
@@ -220,21 +223,17 @@ namespace Capa_de_datos
                     cerrar_conexion();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
                 throw;
             }
-
-            
         }
 
         private void agrgar_parametros(string sql, string parametros) 
         {
             string campo, parametro;
             int i_coma = 0, i_igual = 0;
-
-            cmd = new SqlCommand(sql, cn);
 
             while (true)
             {
@@ -259,6 +258,32 @@ namespace Capa_de_datos
             cmd.Parameters.Add(new SqlParameter(campo, parametro.ToString().Replace("#", ",")));
         }
 
+        public void abrir_transaccion() 
+        {
+            abrir_conexion();
+            tran = cn.BeginTransaction();
+        }
+
+        public void ejecutar_transaccion(string sql, string parametros) 
+        {
+            
+           cmd = cn.CreateCommand();
+           cmd.Transaction = tran;
+           cmd.CommandText = sql;
+           agrgar_parametros(sql,parametros);
+           cmd.ExecuteNonQuery();
+        }
+
+        public void cerrar_transaccion_con_errores() 
+        {
+            tran.Rollback();
+        }
+
+        public void cerrar_transaccion() 
+        {
+            tran.Commit();
+        }
+
         /// <summary>
         /// cierra conexion a base de datos
         /// </summary>
@@ -269,7 +294,5 @@ namespace Capa_de_datos
                 cn.Close(); 
             }
         }
-
-
     }
 }

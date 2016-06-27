@@ -10,20 +10,19 @@ namespace Capa_de_entidad
     {
         public Item_Paquete_turistico item_paquete_turistico { get; set; }
         public int item { get; set; }
-        public int cantidad { get; set; }
-        public decimal precio_total
+        public int cantidad_mayor { get; set; }
+        public int cantidad_menor { get; set; }
+        public decimal precio_total_mayor
         {
-            get
-            {
-                if (item_paquete_turistico.es_mayor)
-                {
-                    return item_paquete_turistico.paquete_turistico.precio * cantidad;
-                }
-                else
-                {
-                    return item_paquete_turistico.paquete_turistico.precio_menor * cantidad;
-                }
+            get{
+                return item_paquete_turistico.paquete_turistico.precio_mayores * cantidad_mayor;
             }
+        }
+        public decimal precio_total_menor 
+        { 
+            get {
+                return item_paquete_turistico.paquete_turistico.precio_menores * cantidad_menor;
+            } 
         }
     }
 }

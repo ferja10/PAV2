@@ -46,6 +46,7 @@
     <Compile Include="Gestor_Localidad.cs" />
     <Compile Include="Gestor_Paquete_Turistico.cs" />
     <Compile Include="Gestor_Pension.cs" />
+    <Compile Include="Gestor_Reserva.cs" />
     <Compile Include="Gestor_Temporada.cs" />
     <Compile Include="Gestor_TipoDocumento.cs" />
     <Compile Include="Gestor_Transporte.cs" />

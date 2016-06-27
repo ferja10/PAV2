@@ -14,5 +14,6 @@ namespace Capa_de_entidad
         public DateTime fecha_regreso { get; set; }
         public Estado_Reserva estado_reserva { get; set; }
         public DateTime fecha_vencimiento { get; set; }
+        public DateTime fecha_reserva { get; set; }
     }
 }

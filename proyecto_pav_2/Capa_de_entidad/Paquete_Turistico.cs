@@ -22,14 +22,27 @@ namespace Capa_de_entidad
         public decimal monto_excurciones { get; set; }
         public decimal descuento_menor { get; set; }
 
-        public decimal precio
+        public decimal precio_mayores
         {
             get { return transporte.precio + alojamiento.precio + monto_excurciones; }
         }
 
-        public decimal precio_menor
+        public decimal precio_menores
         {
-            get { return precio * (descuento_menor/100) ; }
+            get {
+
+                if (descuento_menor != 0)
+                {
+                    decimal total = precio_mayores - (precio_mayores * (descuento_menor / 100)); 
+
+                    return total;    
+                }
+                else
+                {
+                    return precio_mayores;
+                }
+                 
+            }
         }
 
     }

@@ -19,6 +19,7 @@ namespace Capa_de_presentacion
             if (Capa_de_negocio.Gestor_Usuario.validar_usuario_contraseña(Login1.UserName,Login1.Password))
             {
                 e.Authenticated = true;
+                Session["nombre_usuario"] = Login1.UserName.ToString();
             }
             else
             {

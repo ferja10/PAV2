@@ -16,7 +16,7 @@ namespace Capa_de_negocio
         {
             Capa_de_datos.Acceso_A_Datos ad = new Capa_de_datos.Acceso_A_Datos();
 
-            sql = "SELECT * FROM Usuario order by nombre";
+            sql = "SELECT * FROM Usuario order by nombre_usuario";
             
            return ad.leo_tabla(sql);
         }

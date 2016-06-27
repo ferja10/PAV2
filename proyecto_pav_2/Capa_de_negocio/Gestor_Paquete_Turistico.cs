@@ -50,8 +50,8 @@ namespace Capa_de_negocio
             string id = "" + id_paquete_turistico;
 
             sql = "select PT.*,D.descripcion as descripcion_destino,D.nombre,PXT.fecha_comienzo_funcionamiento,PXT.fecha_alta,T.id_temporada ,A.id_habitacion, " +
-                "A.descripcion as 'descripcion_alojamiento',A.id_pension,H.nombre as nombre_habitacion,Pe.nombre as nombre_pension, PXT.monto_excurciones, PXT.descuento_menor, " +
-                "Tr.nombre as nombre_transporte,Tr.descripcion as descripcion_transporte,E.razon_social " +
+                "A.descripcion as 'descripcion_alojamiento',A.id_pension,A.precio as precio_alojamiento,H.nombre as nombre_habitacion,Pe.nombre as nombre_pension, PXT.monto_excurciones, PXT.descuento_menor, " +
+                "Tr.nombre as nombre_transporte,Tr.descripcion as descripcion_transporte,Tr.precio as precio_transporte,E.razon_social " +
                 "from Paquete_Turistico PT join Paquete_X_Temporada PXT on PT.id_paquete_turistico = PXT.id_paquete_turistico " +
                 "join Temporada T on PXT.id_temporada = T.id_temporada join Alojamiento A on PT.id_alojamiento = A.id_alojamiento " +
                 "join Transporte Tr on PT.id_transporte = Tr.id_transporte join Destino D on PT.id_destino = D.id_destino " +
@@ -109,6 +109,12 @@ namespace Capa_de_negocio
                 Capa_de_entidad.Empresa e = new Capa_de_entidad.Empresa();
                 e.razon_social = dr["razon_social"].ToString();
                 tr.empresa = e;
+
+                if (dr["precio_transporte"] != DBNull.Value)
+                {
+                    tr.precio = (decimal)dr["precio_transporte"];
+                }
+                
                 pt.transporte = tr;
 
                 if (dr["id_alojamiento"] != DBNull.Value)
@@ -135,6 +141,11 @@ namespace Capa_de_negocio
                         p.id_pension = (int)dr["id_pension"];
                         p.nombre = dr["nombre_pension"].ToString();
                         a.pension = p;
+                    }
+
+                    if (dr["precio_alojamiento"] != DBNull.Value)
+                    {
+                        a.precio = (decimal)dr["precio_alojamiento"];
                     }
 
                     pt.alojamiento = a;
@@ -299,9 +310,9 @@ namespace Capa_de_negocio
                 "id_paquete_turistico = " + p.id_paquete_turistico + ", id_temporada = " + p.temporada.id_temporada + 
                 ", fecha_comienzo_funcionamiento = '"  + p.fecha_comienzo_funcionamiento.ToString("dd/MM/yyyy") + "'" +
                 ", monto_excurciones = " + p.monto_excurciones.ToString().Replace(",",".") + ", descuento_menor = "+ p.descuento_menor +
-                " WHERE id_paquete_turistico = @id_paquete_turistico and id_temporada = @id_temporada";
+                " WHERE id_paquete_turistico = @id_paquete_turistico";
 
-            parametro = "@id_paquete_turistico=" + p.id_paquete_turistico + ",@id_temporada=" + p.temporada.id_temporada;
+            parametro = "@id_paquete_turistico=" + p.id_paquete_turistico;
 
             ad.modificar(sql, parametro);
         }

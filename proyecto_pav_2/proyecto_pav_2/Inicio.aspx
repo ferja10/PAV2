@@ -67,7 +67,8 @@
                                         <h5 class="text-left"><%# Eval("destino.nombre") %></h5>
                                         <h5 class="text-left">Días:<%# Eval("cantidad_dias") %></h5>
                                         <h5 class="text-left">Noches:<%# Eval("cantidad_noches") %></h5>
-                                        <h4 class="pull-right"><%# Eval("precio", "{0:c}") %></h4>
+                                        <h4 class="pull-right">Precio Mayores<%# Eval("precio_mayores", "{0:c}") %></h4>
+                                        <h4 class="pull-right">Precio Menores de 12<%# Eval("precio_menores", "{0:c}") %></h4>
                                         <asp:Button ID="btn_comprar" runat="server" Text="Comprar" CssClass="btn btn-primary" CommandName="Comprar" CommandArgument='<%#Eval("id_paquete_turistico") %>' />
                                         <asp:Button ID="btn_ver" runat="server" Text="Ver" CssClass="btn btn-primary" CommandName="Ver" CommandArgument='<%#Eval("id_paquete_turistico") %>' />
                                     </div>
