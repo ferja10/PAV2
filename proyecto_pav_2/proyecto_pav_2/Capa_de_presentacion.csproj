@@ -83,7 +83,7 @@
     <Content Include="img\villa general belgrano.jpg" />
     <Content Include="img\villa maria.jpg" />
     <Content Include="index.html" />
-    <Content Include="Informe.aspx" />
+    <Content Include="Informe_Reserva.aspx" />
     <Content Include="Info_Paquete.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="js\bootstrap.js" />
@@ -151,12 +151,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Informe.aspx.cs">
-      <DependentUpon>Informe.aspx</DependentUpon>
+    <Compile Include="Informe_Reserva.aspx.cs">
+      <DependentUpon>Informe_Reserva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Informe.aspx.designer.cs">
-      <DependentUpon>Informe.aspx</DependentUpon>
+    <Compile Include="Informe_Reserva.aspx.designer.cs">
+      <DependentUpon>Informe_Reserva.aspx</DependentUpon>
     </Compile>
     <Compile Include="Info_Paquete.aspx.cs">
       <DependentUpon>Info_Paquete.aspx</DependentUpon>

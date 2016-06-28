@@ -8,8 +8,7 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/shop-homepage.css" rel="stylesheet" />
-    <link href="js/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" />
-    
+  <link href="js/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -54,7 +53,10 @@
                             <a runat="server" href="Informe.aspx" id="mnu_informes">Informes</a>
                         </li>
                         <li>
-                            <a runat="server" href="ABMcliente.aspx" id="A1">Clientes</a>
+                            <a runat="server" href="ABMcliente.aspx" id="mnu_clientes">Clientes</a>
+                        </li>
+                        <li>
+                            <a runat="server" href="Informe_Reserva.aspx" id="mnu_informe_reservas">Informe de Reservas</a>
                         </li>
                     </ul>
                     <div style="color: #FFFFFF">
@@ -103,6 +105,5 @@
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
-
 </body>
 </html>

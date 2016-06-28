@@ -85,13 +85,22 @@ namespace Capa_de_presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor mnu_informes;
         
         /// <summary>
-        /// A1 control.
+        /// mnu_clientes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor mnu_clientes;
+        
+        /// <summary>
+        /// mnu_informe_reservas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor mnu_informe_reservas;
         
         /// <summary>
         /// LoginView1 control.

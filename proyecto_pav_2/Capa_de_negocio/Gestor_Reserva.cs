@@ -10,13 +10,16 @@ namespace Capa_de_negocio
 {
     public class Gestor_Reserva
     {
+        private static Capa_de_datos.Acceso_A_Datos ad;
+        private static string sql;
+
         public static void reservar(List<Capa_de_entidad.Detalle_Reserva>lst,string usuario,DateTime fecha_viaje) 
         {
-            Capa_de_datos.Acceso_A_Datos ad = new Capa_de_datos.Acceso_A_Datos();
+            ad = new Capa_de_datos.Acceso_A_Datos();
 
             string sql = "";
             string parametros = "";
-            int id_usuario = int.Parse(Capa_de_negocio.Gestor_Usuario.obtener_usuarios().Rows[0][0].ToString());
+            int id_usuario = int.Parse(Capa_de_negocio.Gestor_Usuario.obtener_usuarios(usuario).Rows[0][0].ToString());
             int id_reserva = 0;
             
             try
@@ -63,5 +66,60 @@ namespace Capa_de_negocio
             }
             finally { ad.cerrar_conexion(); }
         }
+
+        public static DataTable buscar_reservas() 
+        {
+            ad = new Capa_de_datos.Acceso_A_Datos();
+
+            sql = "select T.nombre as nombre_temporada,P.nombre_paquete,D.nombre as nombre_destino,SUM(DR.cantidad_mayores + DR.cantidad_menores) as cantidad_reservada from " +
+                "Reserva R join Detalle_reserva DR on R.id_reserva = DR.id_reserva " +
+                "join Estado_Reserva ER on R.id_estado_reserva = ER.id_estado_reserva " +
+                "join Paquete_X_Temporada PXT on (DR.id_paquete_turistico=PXT.id_paquete_turistico and DR.id_temporada = PXT.id_temporada) " +
+                "join Paquete_Turistico P on P.id_paquete_turistico = PXT.id_paquete_turistico " +
+                "join Temporada T on PXT.id_temporada = T.id_temporada " +
+                "join Destino D on P.id_destino = D.id_destino " +
+                "where ER.id_estado_reserva <> 3 " +
+                "group by T.nombre,P.nombre_paquete,D.nombre";
+
+            DataTable dt = new DataTable();
+            dt = ad.leo_tabla(sql);
+
+            return dt;
+        }
+
+        public static DataTable buscar_reservas(string id_temporada,string fecha_desde,string fecha_hasta,string id_paquete_turistico)
+        {
+            ad = new Capa_de_datos.Acceso_A_Datos();
+
+            sql = "select T.nombre as nombre_temporada,P.nombre_paquete,D.nombre as nombre_destino,SUM(DR.cantidad_mayores + DR.cantidad_menores) as cantidad_reservada from " +
+                "Reserva R join Detalle_reserva DR on R.id_reserva = DR.id_reserva " +
+                "join Estado_Reserva ER on R.id_estado_reserva = ER.id_estado_reserva " +
+                "join Paquete_X_Temporada PXT on (DR.id_paquete_turistico=PXT.id_paquete_turistico and DR.id_temporada = PXT.id_temporada) " +
+                "join Paquete_Turistico P on P.id_paquete_turistico = PXT.id_paquete_turistico " +
+                "join Temporada T on PXT.id_temporada = T.id_temporada " +
+                "join Destino D on P.id_destino = D.id_destino " +
+                "where ER.id_estado_reserva <> 3 ";
+
+            if (id_temporada != "Todas las temporadas")
+            {
+                sql += "and T.id_temporada=" + id_temporada + " ";
+            }
+            if (fecha_desde != "" && fecha_hasta != "")
+            {
+                 sql += "and (R.fecha_reserva between '"+fecha_desde+"' and '"+fecha_hasta+"') ";
+            }
+            if (id_paquete_turistico != "Todos los paquetes")
+            {
+               sql += "and P.id_paquete_turistico=" + id_paquete_turistico + " ";
+            }
+
+               sql += "group by T.nombre,P.nombre_paquete,D.nombre";
+
+            DataTable dt = new DataTable();
+            dt = ad.leo_tabla(sql);
+
+            return dt;
+        }
+
     }
 }

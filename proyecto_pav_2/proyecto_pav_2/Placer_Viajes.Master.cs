@@ -15,12 +15,14 @@ namespace Capa_de_presentacion
             {
                 mnu_administracion_paquetes.Visible = true;
                 mnu_informes.Visible = true;
+                mnu_informe_reservas.Visible = true;
             }
                 
             else
             {
                 mnu_administracion_paquetes.Visible = false;
                 mnu_informes.Visible = false;
+                mnu_informe_reservas.Visible = false;
             } 
         }
     }

@@ -6,11 +6,12 @@
 
 body {
     padding-top: 70px;
-    text-align: center;
+    text-align: left;
 }
 
 .slide-image {
-    width: 100%;
+    width: 99%;
+    text-align: center;
 }
 
 .carousel-holder {

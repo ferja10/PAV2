@@ -21,6 +21,15 @@ namespace Capa_de_negocio
            return ad.leo_tabla(sql);
         }
 
+        public static DataTable obtener_usuarios(string nombre_usuario)
+        {
+            Capa_de_datos.Acceso_A_Datos ad = new Capa_de_datos.Acceso_A_Datos();
+
+            sql = "SELECT * FROM Usuario Where nombre_usuario = '"+nombre_usuario+"' order by nombre_usuario";
+
+            return ad.leo_tabla(sql);
+        }
+
         public static Boolean validar_usuario_contraseña(string usuario, string clave ) 
         {
             sql = "SELECT * FROM Usuario WHERE (nombre_usuario='"+usuario+"') and (contraseña='"+clave+"')";
